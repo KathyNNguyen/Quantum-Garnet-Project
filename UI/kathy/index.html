@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casino Floor Plan</title>
+    <style>
+        .floorplan-container {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .floorplan-container img {
+            width: 100%;
+            height: auto;
+        }
+
+        .interactive-star {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-image: url('star.png');
+            background-size: cover;
+            cursor: pointer;
+        }
+
+        .tooltip {
+            position: absolute;
+            background-color: white;
+            border: 1px solid black;
+            padding: 5px;
+            display: none;
+            z-index: 10;
+        }
+
+        .interactive-star:hover + .tooltip {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="floorplan-container">
+        <img src="Casino Floor Plan.png" alt="Casino Floor Plan">
+        
+        <!-- star for slot machine 1 -->
+        <div class="interactive-star" style="top: 100px; left: 150px;"></div>
+        <div class="tooltip" style="top: 100px; left: 190px;">
+            Slot Machine 1: <br> Type: Classic Slot <br> Min Bet: $1
+        </div>
+
+        <!-- star for slot machine 2 -->
+        <div class="interactive-star" style="top: 300px; left: 250px;"></div>
+        <div class="tooltip" style="top: 300px; left: 290px;">
+            Slot Machine 2: <br> Type: Progressive Slot <br> Min Bet: $5
+        </div>
+
+    </div>
+</body>
+</html>
