@@ -4,42 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Casino Floor Plan</title>
-    <style>
-
-        .floorplan-container {
-            position: relative;
-            width: 100%;
-            max-width: 1200px;
-        }
-
-        .floorplan-container img {
-            width: 100%;
-            height: auto;
-        }
-
-        .interactive-star {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            background-image: url('star.png');
-            background-size: cover;
-            cursor: pointer;
-        }
-
-        .tooltip {
-            position: absolute;
-            background-color: white;
-            border: 1px solid black;
-            padding: 5px;
-            display: none;
-            z-index: 10;
-        }
-
-        .interactive-star:hover + .tooltip {
-            display: block;
-        }
-    </style>
-        <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
 </head>      
 
 <body>
@@ -50,135 +15,17 @@
     </header>
 
     <div class="container">
-        <aside class="left-side">
-        </aside>
-        <main class="right-side">
-            <!-- moved the floorplan-container here -->
-            <div class="floorplan-container">
+        <div class="left-side">
+        </div>
+
+        <div class="right-side">
+            <div class="floorplan-container" id="floorplan-container">
                 <img src="Casino Floor Plan.png" alt="Casino Floor Plan">
-
-                <!-- star for slot machine 1 -->
-                <div class="interactive-star" style="top: 100px; left: 150px;"></div>
-                <div class="tooltip" style="top: 100px; left: 190px;">
-                    Slot Machine 1: <br> Type: x Slot <br> Min Bet: $1
-                </div>
-
-                <!-- star for slot machine 2 -->
-                <div class="interactive-star" style="top: 300px; left: 250px;"></div>
-                <div class="tooltip" style="top: 300px; left: 290px;">
-                    Slot Machine 2: <br> Type: x Slot <br> Min Bet: $5
-                </div>
-
-                <!-- star for slot machine 3 -->
-                <div class="interactive-star" style="top: 300px; left: 300px;"></div>
-                <div class="tooltip" style="top: 100px; left: 190px;">
-                    Slot Machine 3: <br> Type: x Slot <br> Min Bet: $1
-                </div>
-       
-                <!-- star for slot machine 4 -->
-                <!-- <div class="interactive-star" style="top: 100px; left: 150px;"></div>
-                <div class="tooltip" style="top: 100px; left: 190px;">
-                    Slot Machine 4: <br> Type: x Slot <br> Min Bet: $1
-                </div> -->
-                
-                <!-- star for slot machine 5 -->
-                <!-- <div class="interactive-star" style="top: 100px; left: 150px;"></div>
-                <div class="tooltip" style="top: 100px; left: 190px;">
-                    Slot Machine 5: <br> Type: x Slot <br> Min Bet: $1
-                </div> -->
-                
-                <!-- star for slot machine 6 -->
-                <!-- <div class="interactive-star" style="top: 100px; left: 150px;"></div>
-                <div class="tooltip" style="top: 100px; left: 190px;">
-                    Slot Machine 6: <br> Type: x Slot <br> Min Bet: $1
-                </div>         -->
-
-                <!-- star for slot machine 7 -->
-                <!-- <div class="interactive-star" style="top: 100px; left: 150px;"></div>
-                <div class="tooltip" style="top: 100px; left: 190px;">
-                    Slot Machine 7: <br> Type: x Slot <br> Min Bet: $1
-                </div> -->
-
-                <!-- star for slot machine 8 -->
-                <!-- <div class="interactive-star" style="top: 100px; left: 150px;"></div>
-                <div class="tooltip" style="top: 100px; left: 190px;">
-                    Slot Machine 8: <br> Type: x Slot <br> Min Bet: $1
-                </div>         -->
-
-                <!-- star for slot machine 9 -->
-                <!-- <div class="interactive-star" style="top: 100px; left: 150px;"></div>
-                <div class="tooltip" style="top: 100px; left: 190px;">
-                    Slot Machine 9: <br> Type: x Slot <br> Min Bet: $1
-                </div> -->
-
-                <!-- star for slot machine 10 -->
-                <!-- <div class="interactive-star" style="top: 100px; left: 150px;"></div>
-                <div class="tooltip" style="top: 100px; left: 190px;">
-                    Slot Machine 10: <br> Type: x Slot <br> Min Bet: $1
-                </div> -->
-
-                <!-- star for slot machine 11 -->
-                <!-- <div class="interactive-star" style="top: 100px; left: 150px;"></div>
-                <div class="tooltip" style="top: 100px; left: 190px;">
-                    Slot Machine 11: <br> Type: x Slot <br> Min Bet: $1
-                </div> -->        
-
-                <!-- star for slot machine 12 -->
-                <!-- <div class="interactive-star" style="top: 100px; left: 150px;"></div>
-                <div class="tooltip" style="top: 100px; left: 190px;">
-                    Slot Machine 12: <br> Type: x Slot <br> Min Bet: $1
-                </div> -->
-
-                <!-- star for slot machine 13 -->
-                <!-- <div class="interactive-star" style="top: 100px; left: 150px;"></div>
-                <div class="tooltip" style="top: 100px; left: 190px;">
-                    Slot Machine 13: <br> Type: x Slot <br> Min Bet: $1
-                </div> -->
-
-                <!-- star for slot machine 14 -->
-                <!-- <div class="interactive-star" style="top: 100px; left: 150px;"></div>
-                <div class="tooltip" style="top: 100px; left: 190px;">
-                    Slot Machine 14: <br> Type: x Slot <br> Min Bet: $1
-                </div> -->
-
-                <!-- star for slot machine 15 -->
-                <!-- <div class="interactive-star" style="top: 100px; left: 150px;"></div>
-                <div class="tooltip" style="top: 100px; left: 190px;">
-                    Slot Machine 15: <br> Type: x Slot <br> Min Bet: $1
-                </div> -->
-
-                <!-- star for slot machine 16 -->
-                <!-- <div class="interactive-star" style="top: 100px; left: 150px;"></div>
-                <div class="tooltip" style="top: 100px; left: 190px;">
-                    Slot Machine 16: <br> Type: x Slot <br> Min Bet: $1
-                </div> -->
-
-                <!-- star for slot machine 17 -->
-                <!-- <div class="interactive-star" style="top: 100px; left: 150px;"></div>
-                <div class="tooltip" style="top: 100px; left: 190px;">
-                    Slot Machine 17: <br> Type: x Slot <br> Min Bet: $1
-                </div> -->
-
-                <!-- star for slot machine 18 -->
-                <!-- <div class="interactive-star" style="top: 100px; left: 150px;"></div>
-                <div class="tooltip" style="top: 100px; left: 190px;">
-                    Slot Machine 18: <br> Type: x Slot <br> Min Bet: $1
-                </div> -->
-
-                <!-- star for slot machine 19 -->
-                <!-- <div class="interactive-star" style="top: 100px; left: 150px;"></div>
-                <div class="tooltip" style="top: 100px; left: 190px;">
-                    Slot Machine 19: <br> Type: x Slot <br> Min Bet: $1
-                </div> -->
-
-                <!-- star for slot machine 20 -->
-                <!-- <div class="interactive-star" style="top: 100px; left: 150px;"></div>
-                <div class="tooltip" style="top: 100px; left: 190px;">
-                    Slot Machine 20: <br> Type: x Slot <br> Min Bet: $1
-                </div> -->    
             </div>
-        </main>
+        </div>
     </div>
+
+    <script src = "interactive-floorplan.js"></script>
 </body>
         
 
