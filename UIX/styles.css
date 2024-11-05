@@ -13,7 +13,7 @@ body {
 
 .wrapper {
     display: grid;
-    background-image: url('Images/blackBG.png');
+    background-image: url('/UIX/Images/blackBG.png');
     background-size: cover;
     background-position: center;
     display: grid;
@@ -28,7 +28,7 @@ body {
     .toolbar {
         grid-column: span 5 / span 5;
 
-         background-image: url('Images/goldBG.png');
+         background-image: url('/UIX/Images/goldBG.png');
          background-size: cover;
          background-position: center;
          display: flex;
@@ -52,17 +52,22 @@ body {
     .toolbar-button {
         padding: 10px 20px;
         font-size: 1rem;
-        width: 10rem;
+        width: 7rem;
         border: none; 
         border-radius: 50px; 
         background: var(--red-gradient);
         color: white;
+        text-align: center;
         cursor: pointer; 
         transition: background-color 0.3s;
     }
     
     .toolbar-button:hover {
         background: var(--dark-gradient);
+    }
+
+    a {
+        text-decoration: none;
     }
 
     .left-side { 
@@ -119,7 +124,7 @@ body {
         position: absolute;
         width: 15px;
         height: 15px;
-        background-image: url('Images/seven.png');
+        background-image: url('/UIX/Images/seven.png');
         background-size: cover;
         cursor: pointer;
         transform: translate(-50%, -50%);
