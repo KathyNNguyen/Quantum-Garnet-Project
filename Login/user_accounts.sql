@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS user_accounts (
-    user_id INTEGER PRIMARY KEY,
+    account_num INTEGER PRIMARY KEY,
     username TEXT UNIQUE NOT NULL,
     password_hash TEXT NOT NULL,
     email TEXT UNIQUE NOT NULL,
@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS user_accounts (
 );
 
 -- Sample data with 50 records.
-INSERT INTO user_accounts (user_id, username, password_hash, email, date_of_birth, reward_balance) VALUES
+INSERT INTO user_accounts (account_num, username, password_hash, email, date_of_birth, reward_balance) VALUES
 (1000001, 'user001', 'hashed_password_001', 'user001@example.com', '1990-01-01', 150),
 (1000002, 'user002', 'hashed_password_002', 'user002@example.com', '1988-02-15', 200),
 (1000003, 'user003', 'hashed_password_003', 'user003@example.com', '1992-03-10', 300),

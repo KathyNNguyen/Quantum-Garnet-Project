@@ -195,7 +195,7 @@ body {
         border-radius: 1rem;
     }
     
-    .cta_button {
+    .cta-button {
         position: absolute;
         width: 100%;
         bottom: 25rem;
@@ -213,18 +213,21 @@ body {
         transition: background-color 0.3s;
     }
     
-    .cta_button:hover {
+    .cta-button:hover {
         background-color: darkred; /* Optional hover effect */
     }
 
-    .login_container {
+    .account-container {
         grid-column: 2 / 5;
-        grid-row: 4 / 6; 
+        grid-row: 3 / 6; 
         display: flex;
         background-color: rgba(255, 255, 255, 0.9); 
         padding: 2rem;
         border-radius: 10px;
         margin: auto;
+        width: 60%;
+        padding: 3rem; 
+        font-size: 1.5rem;
     }
     
     .login-form {
@@ -234,7 +237,6 @@ body {
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         text-align: center;
         width: 100%;
-        max-width: 400px;
     }
     
     .login-form input[type="text"],
@@ -248,7 +250,7 @@ body {
     }
     
     .login-form input[type="submit"] {
-        width: 95%;
+        width: 92%;
         padding: 10px;
         background: var(--submit-red);
         color: white;
@@ -257,5 +259,6 @@ body {
         border-radius: 4px;
         font-size: 1rem;
         transition: background-color 0.3s;
+        margin-top: 2rem;
     }
     
