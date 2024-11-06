@@ -196,3 +196,50 @@ body {
     .cta_button {
         margin-top: auto;
     }
+
+    .login_container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: calc(100vh - 6.5rem); /* Adjusted to exclude the toolbar height */
+    }
+    
+    .login-form {
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        width: 100%;
+        max-width: 400px;
+    }
+    
+    .login-form h2 {
+        margin-bottom: 1.5rem;
+    }
+    
+    .login-form input[type="text"],
+    .login-form input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 1rem;
+    }
+    
+    .login-form input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        background-color: var(--red-gradient);
+        border: none;
+        color: white;
+        cursor: pointer;
+        border-radius: 4px;
+        font-size: 1rem;
+        transition: background-color 0.3s;
+    }
+    
+    .login-form input[type="submit"]:hover {
+        background-color: #a20000; /* Darker shade for hover effect */
+    }
