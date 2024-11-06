@@ -1,6 +1,7 @@
 :root {
     --red-gradient: linear-gradient(207deg, rgba(120, 8, 8, 1) 19%, rgba(255, 0, 0, 1) 63%, rgba(120, 8, 8, 1) 100%);
     --dark-gradient: linear-gradient(207deg, rgba(120,8,8,1) 19%, rgba(60,21,21,1) 63%, rgba(120,8,8,1) 100%);
+    --submit-red: #a20000;
 }
 
 body {
@@ -217,13 +218,9 @@ body {
         max-width: 400px;
     }
     
-    .login-form h2 {
-        margin-bottom: 1.5rem;
-    }
-    
     .login-form input[type="text"],
     .login-form input[type="password"] {
-        width: 100%;
+        width: 90%;
         padding: 10px;
         margin-bottom: 1rem;
         border: 1px solid #ccc;
@@ -232,17 +229,14 @@ body {
     }
     
     .login-form input[type="submit"] {
-        width: 100%;
+        width: 95%;
         padding: 10px;
-        background-color: var(--red-gradient);
-        border: none;
+        background: var(--submit-red);
         color: white;
+        border: none;
         cursor: pointer;
         border-radius: 4px;
         font-size: 1rem;
         transition: background-color 0.3s;
     }
     
-    .login-form input[type="submit"]:hover {
-        background-color: #a20000; /* Darker shade for hover effect */
-    }
