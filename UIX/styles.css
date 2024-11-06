@@ -197,7 +197,7 @@ body {
     
     .cta_button {
         position: absolute;
-        width: 15rem;
+        width: 100%;
         bottom: 25rem;
         left: 50%;
         transform: translateX(-50%);
@@ -209,6 +209,7 @@ body {
         cursor: pointer;
         text-align: center;
         font-size: 3.5rem;
+        font-size: clamp(1.5rem, 3vw, 3.5rem);
         transition: background-color 0.3s;
     }
     
