@@ -8,26 +8,7 @@ app = Flask(__name__)
 # Set a secret key for sessions.
 app.secret_key = secrets.token_hex(16)
 # Define the new database file.
-db_file = 'UIX/user_accounts.sql'
-
-# Check if the database file exists. If not, create and populate it.
-if not os.path.exists(db_file):
-    with open('user_accounts.sql', 'r') as sql_file:
-        sql_script = sql_file.read()
-    # Connect to the SQLite database (it will create the file if it doesn't exist).
-    conn = sql.connect(db_file)
-    c = conn.cursor()
-    
-    # Execute the SQL script to create the table and insert data.
-    c.executescript(sql_script)
-    
-    # Commit and close the connection.
-    conn.commit()
-    conn.close()
-    print("Database created and populated successfully.")
-else:
-    print("Database already exists.")
-
+db_file = 'UIX/user_accounts.db'
 
 @app.route('/')
 def home():
@@ -53,9 +34,33 @@ def create_account():
 def directory():
     return render_template('directory.html')
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+
+        try:
+            with sql.connect(db_file) as con:
+                cur = con.cursor()
+                cur.execute("SELECT * FROM user_accounts WHERE username = ?", (username,))
+                user = cur.fetchone()
+
+                if user and user[2] == password:
+                    session['logged_in'] = True
+                    session['name'] = user[1]
+                    session['SecurityLevel'] = user[8]
+                    flash('Login successful!', 'success')
+                    return redirect(url_for('home'))
+                else:
+                    flash('Invalid username or password', 'danger')
+        except sql.Error as e:
+            flash(f"Database error: {e}", 'danger')
+            return render_template('login.html')
+
+
     return render_template('login.html')
+
 
 @app.route('/promotions')
 def promotions():
