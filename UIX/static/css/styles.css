@@ -14,7 +14,7 @@ body {
 
 .wrapper {
     display: grid;
-    background-image: url('/UIX/static/images/blackBG.png');
+    background-image: url('../images/blackBG.png');
     background-size: cover;
     background-position: center;
     display: grid;
@@ -29,7 +29,7 @@ body {
     .toolbar {
         grid-column: span 5 / span 5;
 
-         background-image: url('/UIX/static/images/goldBG.png');
+         background-image: url('../images/goldBG.png');
          background-size: cover;
          background-position: center;
          display: flex;
@@ -125,7 +125,7 @@ body {
         position: absolute;
         width: 15px;
         height: 15px;
-        background-image: url('/UIX/static/images/seven.png');
+        background-image: url('../images/seven.png');
         background-size: cover;
         cursor: pointer;
         transform: translate(-50%, -50%);
