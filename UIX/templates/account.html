@@ -26,9 +26,12 @@
         <div class="account-container">
             <form class="login-form" action="{{ url_for('logout') }}" method="POST">
                 <h2>Account</h2>
-                <p><strong>Username:</strong> JohnDoe</p>
-                <p><strong>Email:</strong> johndoe@example.com</p>
-                <p><strong>Birthday:</strong> January 20, 1995</p>
+                <p><strong>Username:</strong> {{ session['name'] }}</p>
+                <p><strong>First Name:</strong> {{ user[0] }}</p>
+                <p><strong>Last Name:</strong> {{ user[1] }}</p>
+                <p><strong>Email:</strong> {{ user[2] }}</p>
+                <p><strong>Birthday:</strong> {{ user[3] }}</p>
+                <p><strong>Reward Balance:</strong> ${{ user[4] }}</p>
                 <input type="submit" value="Log Out">
             </form>
         </div>

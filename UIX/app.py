@@ -20,7 +20,27 @@ def about():
 
 @app.route('/account')
 def account():
-    return render_template('account.html')
+    if 'logged_in' in session:
+        username = session['name']
+        try:
+            with sql.connect(db_file) as con:
+                cur = con.cursor()
+                # Query to fetch user details based on the username
+                cur.execute("SELECT first_name, last_name, email, date_of_birth, reward_balance FROM user_accounts WHERE username = ?", (username,))
+                user = cur.fetchone()
+                
+                if user:
+                    # Pass the user data to the template
+                    return render_template('account.html', user=user)
+                else:
+                    flash('User not found', 'danger')
+                    return redirect(url_for('login'))
+        except sql.Error as e:
+            flash(f"Database error: {e}", 'danger')
+            return redirect(url_for('login'))
+    else:
+        flash('You must be logged in to view your account', 'warning')
+        return redirect(url_for('login'))
 
 @app.route('/big-winners')
 def big_winners():
