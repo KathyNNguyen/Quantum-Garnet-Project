@@ -61,6 +61,17 @@ def login():
 
     return render_template('login.html')
 
+@app.route('/logout', methods=['GET', 'POST'])
+def logout():
+    # Handle POST request for logging out
+    if request.method == 'POST':
+        session.pop('logged_in', None)
+        session.pop('name', None)
+        session.pop('SecurityLevel', None)
+        flash('You have been logged out.', 'success')
+        return redirect(url_for('login'))
+
+    return redirect(url_for('login')) 
 
 @app.route('/promotions')
 def promotions():
