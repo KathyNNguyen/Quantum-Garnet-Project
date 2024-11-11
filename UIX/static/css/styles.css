@@ -349,15 +349,13 @@ a {
 }
 
 .flipbook-button {
-  padding: 10px 20px;
-  font-size: 1rem;
-  width: 7rem;
+  background-color: var(--submit-red);
+  color: #fff;
   border: none;
-  border-radius: 50px;
-  background: var(--red-gradient);
-  color: white;
-  text-align: center;
+  padding: 10px 20px;
+  font-size: 16px;
   cursor: pointer;
+  border-radius: 5px;
   transition: background-color 0.3s;
 }
 

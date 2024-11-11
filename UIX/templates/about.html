@@ -13,56 +13,6 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='css/styles.css') }}"
     />
-
-    <style>
-      /* Style for the page flip container */
-      .flipbook-container {
-        position: relative;
-        width: 100%;
-        height: 400px; /* adjust as needed */
-        margin: 50px auto;
-        overflow: hidden;
-      }
-
-      .flipbook-wrapper {
-        display: flex;
-        flex-direction: row;
-        transition: transform 0.5s ease-in-out;
-      }
-
-      .flipbook-page {
-        min-width: 100%;
-        height: 100%;
-        background-color: #fff;
-        padding: 20px;
-        box-sizing: border-box;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border: 1px solid #ccc;
-      }
-
-      /* Navigation buttons */
-      .flipbook-buttons {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 20px;
-      }
-
-      .flipbook-button {
-        padding: 10px 20px;
-        background-color: #007bff;
-        color: white;
-        text-decoration: none;
-        border-radius: 5px;
-        font-weight: bold;
-        cursor: pointer;
-      }
-
-      .flipbook-button:hover {
-        background-color: #0056b3;
-      }
-    </style>
   </head>
 
   <body>
