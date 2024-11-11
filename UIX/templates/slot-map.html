@@ -16,7 +16,11 @@
                 <a href="{{ url_for('home') }}" class="toolbar-button">Home</a>
                 <a href="{{ url_for('about') }}" class="toolbar-button">About</a>
                 <a href="{{ url_for('directory') }}" class="toolbar-button">Directory</a>
-                <a href="{{ url_for('login') }}" class="toolbar-button">Login</a>
+                {% if session.get('logged_in') %}
+                    <a href="{{ url_for('account') }}" class="toolbar-button">Account</a>
+                {% else %}
+                    <a href="{{ url_for('login') }}" class="toolbar-button">Login</a>
+                {% endif %}
             </div>
         </div>
         <div class="left-side">
