@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="/UIX/static/images/seven2.png" type="7-icon">
+    <link rel="icon" href="{{ url_for('static', filename='images/seven2.png') }}" type="image/png">
     <title>Home</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>      
@@ -23,39 +23,36 @@
             <div class="rectangular-container">
                 <div class="media-card">
                     <div class="card-image">
-                        <img src="../static/images/sample1.png" alt="Sample Image">
-                        <a href="/UIX/templates/slot-map.html" class="cta-button">Slot Map</a>
+                        <img src="{{ url_for('static', filename='images/sample1.png') }}" alt="Sample Image">
+                        <a href="{{ url_for('slot_map') }}" class="cta-button">Slot Map</a>
                     </div>
                 </div>
             </div>
             <div class="rectangular-container">
                 <div class="media-card">
                     <div class="card-image">
-                        <img src="../static/images/sample2.jpg" alt="Sample Image">
-                        <a href="/UIX/templates/promotions.html" class="cta-button">Promotions</a>
+                        <img src="{{ url_for('static', filename='images/sample2.jpg') }}" alt="Sample Image">
+                        <a href="{{ url_for('promotions') }}" class="cta-button">Promotions</a>
                     </div>
                 </div>
             </div>
             <div class="rectangular-container">
                 <div class="media-card">
                     <div class="card-image">
-                        <img src="../static/images/sample3.png" alt="Sample Image">
-                        <a href="/UIX//templates/rewards.html" class="cta-button">QG Rewards</a>
+                        <img src="{{ url_for('static', filename='images/sample3.png') }}" alt="Sample Image">
+                        <a href="{{ url_for('rewards') }}" class="cta-button">QG Rewards</a>
                     </div>
                 </div>
             </div>
             <div class="rectangular-container">
                 <div class="media-card">
                     <div class="card-image">
-                        <img src="../static/images/sample4.png" alt="Sample Image">
-                        <a href="/UIX/templates/big-winners.html" class="cta-button">Big Winners</a>
+                        <img src="{{ url_for('static', filename='images/sample4.png') }}" alt="Sample Image">
+                        <a href="{{ url_for('big_winners') }}" class="cta-button">Big Winners</a>
                     </div>
                 </div>
             </div>
         </div> 
     </div>
 </body>
-        
-
 </html>
-

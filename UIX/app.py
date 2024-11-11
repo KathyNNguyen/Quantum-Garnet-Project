@@ -18,6 +18,21 @@ def directory():
 def login():
     return render_template('login.html')
 
+@app.route('/slot-map')
+def slot_map():
+    return render_template('slot-map.html')
+
+@app.route('/promotions')
+def promotions():
+    return render_template('promotions.html')
+
+@app.route('/rewards')
+def rewards():
+    return render_template('rewards.html')
+
+@app.route('/big-winners')
+def big_winners():
+    return render_template('big-winners.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
