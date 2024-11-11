@@ -305,7 +305,7 @@ a {
 .flipbook-container {
   position: relative;
   width: 100%;
-  height: 400px;
+  height: 100%;
   margin: 50px auto;
   overflow: hidden;
 }
@@ -319,8 +319,6 @@ a {
 
 .flipbook-page {
   min-width: 100%;
-  height: 100%;
-  max-height: 350px;
   background-color: #fff;
   padding: 20px;
   box-sizing: border-box;
