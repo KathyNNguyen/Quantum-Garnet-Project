@@ -11,7 +11,7 @@ def about():
     return render_template('about.html')
 
 @app.route('/account')
-def about():
+def account():
     return render_template('account.html')
 
 @app.route('/big-winners')
