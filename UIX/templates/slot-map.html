@@ -4,32 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Casino Floor Plan</title>
-    <link rel="icon" href="/UIX/Images/star.png" type="7-icon">
-    <link rel="stylesheet" href="/UIX/styles.css">
+    <link rel="icon" href="{{ url_for('static', filename='images/star.png') }}" type="7-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>      
 
 <body>
     <div class="wrapper">
         <div class="toolbar">
-            <img src="/UIX/Images/logo2.png" alt="Quantum Garnet Casino">
+            <img src="{{ url_for('static', filename='images/logo2.png') }}" alt="Quantum Garnet Casino">
             <div class="toolbar-buttons">
-                <a href="/UIX/Pages/home.html" class="toolbar-button">Home</a>
-                <a href="/UIX/Pages/about.html" class="toolbar-button">About</a>
-                <a href="/UIX/Pages/directory.html" class="toolbar-button">Directory</a>
-                <a href="/UIX/Pages/login.html" class="toolbar-button">Login</a>
+                <a href="{{ url_for('home') }}" class="toolbar-button">Home</a>
+                <a href="{{ url_for('about') }}" class="toolbar-button">About</a>
+                <a href="{{ url_for('directory') }}" class="toolbar-button">Directory</a>
+                <a href="{{ url_for('login') }}" class="toolbar-button">Login</a>
             </div>
         </div>
-            <div class="left-side">
-                <div class="searchbar">
-                    <input type="search" id="search-box" class="search-input" placeholder="Search...">
-                </div>
+        <div class="left-side">
+            <div class="searchbar">
+                <input type="search" id="search-box" class="search-input" placeholder="Search...">
             </div>
-            <div class="right-side">
-                <div class="floorplan-container" id="floorplan-container">
-                    <img src="/UIX/Images/casinoFloorplan.png" alt="Casino Floor Plan">
-                </div>
+        </div>
+        <div class="right-side">
+            <div class="floorplan-container" id="floorplan-container">
+                <img src="{{ url_for('static', filename='images/casinoFloorplan.png') }}" alt="Casino Floor Plan">
             </div>
+        </div>
     </div>
-    <script src = "/UIX/interactive-floorplan.js"></script>
+    <script src="{{ url_for('static', filename='js/interactive-floorplan.js') }}"></script>
 </body>
 </html>

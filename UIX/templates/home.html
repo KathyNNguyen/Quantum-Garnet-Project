@@ -3,52 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="/UIX/Images/seven2.png" type="7-icon">
+    <link rel="icon" href="/UIX/static/images/seven2.png" type="7-icon">
     <title>Home</title>
-    <link rel="stylesheet" href="/UIX/styles.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>      
 
 <body>
     <div class="wrapper">
         <div class="toolbar">
-            <img src="/UIX/Images/logo2.png" alt="Quantum Garnet Casino">
+            <img src="{{ url_for('static', filename='images/logo2.png') }}" alt="Quantum Garnet Casino">
             <div class="toolbar-buttons">
-                <a href="/UIX/Pages/home.html" class="toolbar-button">Home</a>
-                <a href="/UIX/Pages/about.html" class="toolbar-button">About</a>
-                <a href="/UIX/Pages/directory.html" class="toolbar-button">Directory</a>
-                <a href="/UIX/Pages/login.html" class="toolbar-button">Login</a>
+                <a href="{{ url_for('home') }}" class="toolbar-button">Home</a>
+                <a href="{{ url_for('about') }}" class="toolbar-button">About</a>
+                <a href="{{ url_for('directory') }}" class="toolbar-button">Directory</a>
+                <a href="{{ url_for('login') }}" class="toolbar-button">Login</a>
             </div>
         </div>
         <div class="container">
             <div class="rectangular-container">
                 <div class="media-card">
                     <div class="card-image">
-                        <img src="/UIX/Images/sample1.png" alt="Sample Image">
-                        <a href="/UIX/Pages/slot-map.html" class="cta-button">Slot Map</a>
+                        <img src="/UIX/static/images/sample1.png" alt="Sample Image">
+                        <a href="/UIX/templates/slot-map.html" class="cta-button">Slot Map</a>
                     </div>
                 </div>
             </div>
             <div class="rectangular-container">
                 <div class="media-card">
                     <div class="card-image">
-                        <img src="/UIX/Images/sample3.png" alt="Sample Image">
-                        <a href="/UIX/Pages/promotions.html" class="cta-button">Promotions</a>
+                        <img src="/UIX/static/images/sample3.png" alt="Sample Image">
+                        <a href="/UIX/templates/promotions.html" class="cta-button">Promotions</a>
                     </div>
                 </div>
             </div>
             <div class="rectangular-container">
                 <div class="media-card">
                     <div class="card-image">
-                        <img src="/UIX/Images/sample4.png" alt="Sample Image">
-                        <a href="/UIX/Pages/rewards.html" class="cta-button">QG Rewards</a>
+                        <img src="/UIX/static/images/sample4.png" alt="Sample Image">
+                        <a href="/UIX//templates/rewards.html" class="cta-button">QG Rewards</a>
                     </div>
                 </div>
             </div>
             <div class="rectangular-container">
                 <div class="media-card">
                     <div class="card-image">
-                        <img src="/UIX/Images/sample2.jpg" alt="Sample Image">
-                        <a href="/UIX/Pages/big-winners.html" class="cta-button">Big Winners</a>
+                        <img src="/UIX/static/images/sample2.jpg" alt="Sample Image">
+                        <a href="/UIX/templates/big-winners.html" class="cta-button">Big Winners</a>
                     </div>
                 </div>
             </div>
