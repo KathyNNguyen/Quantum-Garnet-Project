@@ -240,7 +240,9 @@ body {
     }
     
     .login-form input[type="text"],
-    .login-form input[type="password"] {
+    .login-form input[type="password"], 
+    .login-form input[type="email"], 
+    .login-form input[type="date"] {
         width: 90%;
         padding: 10px;
         margin-bottom: 1rem;
@@ -274,5 +276,5 @@ body {
     }
     
     .btn-submit:hover {
-        background-color: #900000;
+        background-color: darkred;
     }
