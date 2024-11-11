@@ -1,39 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Casino Floor Plan</title>
-    <link rel="icon" href="{{ url_for('static', filename='images/star.png') }}" type="7-icon">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-</head>      
+    <link
+      rel="icon"
+      href="{{ url_for('static', filename='images/star.png') }}"
+      type="7-icon"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+  </head>
 
-<body>
+  <body>
     <div class="wrapper">
-        <div class="toolbar">
-            <img src="{{ url_for('static', filename='images/logo2.png') }}" alt="Quantum Garnet Casino">
-            <div class="toolbar-buttons">
-                <a href="{{ url_for('home') }}" class="toolbar-button">Home</a>
-                <a href="{{ url_for('about') }}" class="toolbar-button">About</a>
-                <a href="{{ url_for('directory') }}" class="toolbar-button">Directory</a>
-                {% if session.get('logged_in') %}
-                    <a href="{{ url_for('account') }}" class="toolbar-button">Account</a>
-                {% else %}
-                    <a href="{{ url_for('login') }}" class="toolbar-button">Login</a>
-                {% endif %}
-            </div>
+      <div class="toolbar">
+        <img
+          src="{{ url_for('static', filename='images/logo2.png') }}"
+          alt="Quantum Garnet Casino"
+        />
+        <div class="toolbar-buttons">
+          <a href="{{ url_for('home') }}" class="toolbar-button">Home</a>
+          <a href="{{ url_for('about') }}" class="toolbar-button">About</a>
+          <a href="{{ url_for('directory') }}" class="toolbar-button"
+            >Directory</a
+          >
+          {% if session.get('logged_in') %}
+          <a href="{{ url_for('account') }}" class="toolbar-button">Account</a>
+          {% else %}
+          <a href="{{ url_for('login') }}" class="toolbar-button">Login</a>
+          {% endif %}
         </div>
-        <div class="left-side">
-            <div class="searchbar">
-                <input type="search" id="search-box" class="search-input" placeholder="Search...">
-            </div>
+      </div>
+      <div class="left-side">
+        <div class="searchbar">
+          <input
+            type="search"
+            id="search-box"
+            class="search-input"
+            placeholder="Search..."
+          />
         </div>
-        <div class="right-side">
-            <div class="floorplan-container" id="floorplan-container">
-                <img src="{{ url_for('static', filename='images/casinoFloorplan.png') }}" alt="Casino Floor Plan">
-            </div>
+      </div>
+      <div class="right-side">
+        <div class="floorplan-container" id="floorplan-container">
+          <img
+            src="{{ url_for('static', filename='images/casinoFloorplan.png') }}"
+            alt="Casino Floor Plan"
+          />
         </div>
+      </div>
     </div>
     <script src="{{ url_for('static', filename='js/interactive-floorplan.js') }}"></script>
-</body>
+  </body>
 </html>

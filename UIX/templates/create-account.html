@@ -1,38 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="{{ url_for('static', filename='images/seven2.png') }}" type="7-icon">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      href="{{ url_for('static', filename='images/seven2.png') }}"
+      type="7-icon"
+    />
     <title>Create Account</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-</head>      
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+  </head>
 
-<body>
+  <body>
     <div class="wrapper">
-        <div class="toolbar">
-            <img src="{{ url_for('static', filename='images/logo2.png') }}" alt="Quantum Garnet Casino">
-            <div class="toolbar-buttons">
-                <a href="{{ url_for('home') }}" class="toolbar-button">Home</a>
-                <a href="{{ url_for('about') }}" class="toolbar-button">About</a>
-                <a href="{{ url_for('directory') }}" class="toolbar-button">Directory</a>
-                <a href="{{ url_for('login') }}" class="toolbar-button">Login</a>
-            </div>
+      <div class="toolbar">
+        <img
+          src="{{ url_for('static', filename='images/logo2.png') }}"
+          alt="Quantum Garnet Casino"
+        />
+        <div class="toolbar-buttons">
+          <a href="{{ url_for('home') }}" class="toolbar-button">Home</a>
+          <a href="{{ url_for('about') }}" class="toolbar-button">About</a>
+          <a href="{{ url_for('directory') }}" class="toolbar-button"
+            >Directory</a
+          >
+          <a href="{{ url_for('login') }}" class="toolbar-button">Login</a>
         </div>
-        <div class="account-container">
-            <form class="login-form" method="POST" action="{{ url_for('create_account') }}">
-                <h2>Create Account</h2>
-    
-                <input type="text" id="first_name" name="first_name" placeholder="First Name" required><br>
-                <input type="text" id="last_name" name="last_name" placeholder="Last Name" required><br>
-                <input type="text" id="username" name="username" placeholder="Username" required><br>
-                <input type="password" id="password" name="password" placeholder="Password" required><br>
-                <input type="email" id="email" name="email" placeholder="Email" required><br>
-                <input type="date" id="date_of_birth" name="date_of_birth" placeholder="Date of Birth" required><br>
-                <input type="submit" value="Create Account" class="btn-submit">
-            </form>
-        </div>
-        
+      </div>
+      <div class="account-container">
+        <form
+          class="login-form"
+          method="POST"
+          action="{{ url_for('create_account') }}"
+        >
+          <h2>Create Account</h2>
+
+          <input
+            type="text"
+            id="first_name"
+            name="first_name"
+            placeholder="First Name"
+            required
+          /><br />
+          <input
+            type="text"
+            id="last_name"
+            name="last_name"
+            placeholder="Last Name"
+            required
+          /><br />
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Username"
+            required
+          /><br />
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Password"
+            required
+          /><br />
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Email"
+            required
+          /><br />
+          <input
+            type="date"
+            id="date_of_birth"
+            name="date_of_birth"
+            placeholder="Date of Birth"
+            required
+          /><br />
+          <input type="submit" value="Create Account" class="btn-submit" />
+        </form>
+      </div>
     </div>
-</body>
+  </body>
 </html>

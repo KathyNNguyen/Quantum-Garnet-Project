@@ -1,40 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="{{ url_for('static', filename='images/seven2.png') }}" type="7-icon">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      href="{{ url_for('static', filename='images/seven2.png') }}"
+      type="7-icon"
+    />
     <title>Account</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-</head>      
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+  </head>
 
-<body>
+  <body>
     <div class="wrapper">
-        <div class="toolbar">
-            <img src="{{ url_for('static', filename='images/logo2.png') }}" alt="Quantum Garnet Casino">
-            <div class="toolbar-buttons">
-                <a href="{{ url_for('home') }}" class="toolbar-button">Home</a>
-                <a href="{{ url_for('about') }}" class="toolbar-button">About</a>
-                <a href="{{ url_for('directory') }}" class="toolbar-button">Directory</a>
-                {% if session.get('logged_in') %}
-                    <a href="{{ url_for('account') }}" class="toolbar-button">Account</a>
-                {% else %}
-                    <a href="{{ url_for('login') }}" class="toolbar-button">Login</a>
-                {% endif %}
-            </div>
+      <div class="toolbar">
+        <img
+          src="{{ url_for('static', filename='images/logo2.png') }}"
+          alt="Quantum Garnet Casino"
+        />
+        <div class="toolbar-buttons">
+          <a href="{{ url_for('home') }}" class="toolbar-button">Home</a>
+          <a href="{{ url_for('about') }}" class="toolbar-button">About</a>
+          <a href="{{ url_for('directory') }}" class="toolbar-button"
+            >Directory</a
+          >
+          {% if session.get('logged_in') %}
+          <a href="{{ url_for('account') }}" class="toolbar-button">Account</a>
+          {% else %}
+          <a href="{{ url_for('login') }}" class="toolbar-button">Login</a>
+          {% endif %}
         </div>
-        <div class="account-container">
-            <form class="login-form" action="{{ url_for('logout') }}" method="POST">
-                <h2>Account</h2>
-                <p><strong>Username:</strong> {{ session['name'] }}</p>
-                <p><strong>First Name:</strong> {{ user[0] }}</p>
-                <p><strong>Last Name:</strong> {{ user[1] }}</p>
-                <p><strong>Email:</strong> {{ user[2] }}</p>
-                <p><strong>Birthday:</strong> {{ user[3] }}</p>
-                <p><strong>Reward Balance:</strong> ${{ user[4] }}</p>
-                <input type="submit" value="Log Out">
-            </form>
-        </div>
+      </div>
+      <div class="account-container">
+        <form class="login-form" action="{{ url_for('logout') }}" method="POST">
+          <h2>Account</h2>
+          <p><strong>Username:</strong> {{ session['name'] }}</p>
+          <p><strong>First Name:</strong> {{ user[0] }}</p>
+          <p><strong>Last Name:</strong> {{ user[1] }}</p>
+          <p><strong>Email:</strong> {{ user[2] }}</p>
+          <p><strong>Birthday:</strong> {{ user[3] }}</p>
+          <p><strong>Reward Balance:</strong> ${{ user[4] }}</p>
+          <input type="submit" value="Log Out" />
+        </form>
+      </div>
     </div>
-</body>
+  </body>
 </html>

@@ -1,41 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="/UIX/static/images/seven2.png" type="7-icon">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/UIX/static/images/seven2.png" type="7-icon" />
     <title>Login</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
     <script>
-        function redirectToCreateAccount() {
-            window.location.href = "{{ url_for('create_account') }}";
-        }
+      function redirectToCreateAccount() {
+        window.location.href = "{{ url_for('create_account') }}";
+      }
     </script>
-</head>      
+  </head>
 
-<body>
+  <body>
     <div class="wrapper">
-        <div class="toolbar">
-            <img src="{{ url_for('static', filename='images/logo2.png') }}" alt="Quantum Garnet Casino">
-            <div class="toolbar-buttons">
-                <a href="{{ url_for('home') }}" class="toolbar-button">Home</a>
-                <a href="{{ url_for('about') }}" class="toolbar-button">About</a>
-                <a href="{{ url_for('directory') }}" class="toolbar-button">Directory</a>
-                <a href="{{ url_for('login') }}" class="toolbar-button">Login</a>
-            </div>
+      <div class="toolbar">
+        <img
+          src="{{ url_for('static', filename='images/logo2.png') }}"
+          alt="Quantum Garnet Casino"
+        />
+        <div class="toolbar-buttons">
+          <a href="{{ url_for('home') }}" class="toolbar-button">Home</a>
+          <a href="{{ url_for('about') }}" class="toolbar-button">About</a>
+          <a href="{{ url_for('directory') }}" class="toolbar-button"
+            >Directory</a
+          >
+          <a href="{{ url_for('login') }}" class="toolbar-button">Login</a>
         </div>
-        <div class="account-container">
-            <form class="login-form" action="/login" method="POST">
-                <h2>Login</h2>
-                <input type="text" id="username" name="username" placeholder="Username" required>
-                <input type="password" id="password" name="password" placeholder="Password" required>
-                <input type="submit" value="Log in" class="btn-submit">
-            </form>
-            <button onclick="redirectToCreateAccount()" class="btn-submit">Create Account</button>
-        </div>
+      </div>
+      <div class="account-container">
+        <form class="login-form" action="/login" method="POST">
+          <h2>Login</h2>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Username"
+            required
+          />
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Password"
+            required
+          />
+          <input type="submit" value="Log in" class="btn-submit" />
+        </form>
+        <button onclick="redirectToCreateAccount()" class="btn-submit">
+          Create Account
+        </button>
+      </div>
     </div>
-</body>
-        
-
+  </body>
 </html>
-
