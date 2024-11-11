@@ -278,3 +278,83 @@ body {
     .btn-submit:hover {
         background-color: darkred;
     }
+
+    .flipbook {
+        grid-column: 2 / 5;
+        grid-row: 3 / 6; 
+        display: flex;
+        background-color: rgba(255, 255, 255, 0.9); 
+        padding: 2rem;
+        border-radius: 10px;
+        margin: auto;
+        width: 60%;
+        padding: 3rem; 
+        font-size: 1.5rem;
+    }
+    
+    .flipbook-container {
+        position: relative;
+        width: 100%;
+        height: 400px; /* adjust as needed */
+        margin: 50px auto;
+        overflow: hidden;
+    }
+    
+    .flipbook-wrapper {
+        display: flex;
+        flex-direction: row;
+        transition: transform 0.5s ease-in-out;
+    }
+    
+    .flipbook-page {
+        display: grid;
+        grid-template-rows: 50px 1fr 50px; /* Thin title and button rows, thicker content row */
+        height: 100%;
+        background-color: #fff;
+        padding: 20px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+    }
+    
+    /* Title row (thin) */
+    .flipbook-title {
+        text-align: center;
+    }
+    
+    /* Content row (thicker) */
+    .flipbook-content {
+        padding: 20px;
+        font-size: 1.2rem;
+        overflow-y: auto; /* Allows content to scroll if it's too long */
+    }
+    
+    /* Button row (thin) */
+    .flipbook-buttons-row {
+        display: flex;
+        justify-content: center;
+    }
+    
+    .flipbook-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    width: 7rem;
+    border: none;
+    border-radius: 50px;
+    background: var(--red-gradient); /* Match the submit button style */
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Hover effect for flipbook buttons */
+.flipbook-button:hover {
+    background: var(--dark-gradient); /* Darker gradient on hover */
+}
+
+/* Button container for flipbook pages */
+.flipbook-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
