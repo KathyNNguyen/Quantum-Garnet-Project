@@ -44,9 +44,47 @@ def account():
 def big_winners():
     return render_template('big-winners.html')
 
-@app.route('/create-account')
+@app.route('/create-account', methods=['GET', 'POST'])
 def create_account():
+    if request.method == 'POST':
+        first_name = request.form['first_name']
+        last_name = request.form['last_name']
+        email = request.form['email']
+        date_of_birth = request.form['date_of_birth']
+        username = request.form['username']
+        password = request.form['password']
+
+        try:
+            with sql.connect(db_file) as con:
+                cur = con.cursor()
+
+                cur.execute("SELECT MAX(account_num) FROM user_accounts")
+                max_account_num = cur.fetchone()[0]
+                if max_account_num is None:
+                    account_num = 1000001
+                else:
+                    account_num = max_account_num + 1
+
+                password_hash = password
+
+                reward_balance = 0
+                security_level = 1
+
+                cur.execute("""
+                    INSERT INTO user_accounts (account_num, username, password_hash, first_name, last_name, email, date_of_birth, reward_balance, security_level)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                """, (account_num, username, password_hash, first_name, last_name, email, date_of_birth, reward_balance, security_level))
+
+                con.commit()
+                flash('Account created successfully!', 'success')
+                return redirect(url_for('login'))
+
+        except sql.Error as e:
+            flash(f"Database error: {e}", 'danger')
+            return redirect(url_for('create_account'))
+
     return render_template('create-account.html')
+
 
 @app.route('/directory')
 def directory():
@@ -81,7 +119,6 @@ def login():
 
 @app.route('/logout', methods=['GET', 'POST'])
 def logout():
-    # Handle POST request for logging out
     if request.method == 'POST':
         session.pop('logged_in', None)
         session.pop('name', None)
