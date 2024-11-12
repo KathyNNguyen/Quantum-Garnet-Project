@@ -392,6 +392,7 @@ a {
 
 .flipbook-button {
   padding: var(--padding-small) var(--padding-base);
+  width: var(--sizing-medium);
   border: none;
   border-radius: var(--border-small);
   background-color: var(--submit-red);
