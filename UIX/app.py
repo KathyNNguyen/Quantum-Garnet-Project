@@ -39,6 +39,10 @@ def account():
     else:
         flash('You must be logged in to view your account', 'warning')
         return redirect(url_for('login'))
+    
+@app.route('/admin')
+def admin():
+    return render_template('admin.html')
 
 @app.route('/big-winners')
 def big_winners():
