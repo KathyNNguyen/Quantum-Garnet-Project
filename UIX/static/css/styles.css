@@ -42,7 +42,7 @@
   --font-size-large: 1.5rem;
   --font-size-xlarge: 3.5rem;
 
-  /* Color variables. */
+  /* Color variables */
   --red-gradient: linear-gradient(
     207deg,
     rgba(120, 8, 8, 1) 19%,
@@ -64,62 +64,62 @@
 }
 
 body {
-  margin: var(--margin-zero);
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
   height: 100vh;
+  margin: var(--margin-zero);
+  font-family: Arial, sans-serif;
   overflow: hidden;
 }
 
 .wrapper {
   display: grid;
-  background-image: url("../images/blackBG.png");
-  background-size: cover;
-  background-position: center;
-  display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(8, 1fr);
   grid-column-gap: var(--gap-large);
   grid-row-gap: var(--gap-zero);
+  background-position: center;
+
   height: 100vh;
   width: 100%;
+  background-image: url("../images/blackBG.png");
+  background-size: cover;
 }
 
 .toolbar {
   grid-column: span 5 / span 5;
 
-  background-image: url("../images/gold-BG.jpg");
-  background-size: cover;
-  background-position: center;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   height: var(--sizing-medium);
   width: 100%;
-  justify-content: space-between;
+  background-image: url("../images/gold-BG.jpg");
+  background-position: center;
+  background-size: cover;
 }
 
 .toolbar img {
-  max-width: 33%;
   height: auto;
+  max-width: 33%;
 }
 
 .toolbar-buttons {
   display: flex;
-  gap: var(--gap-medium);
   margin-right: var(--margin-large);
+  gap: var(--gap-medium);
 }
 
 .toolbar-button {
   padding: var(--padding-small) var(--padding-base);
-  font-size: var(--font-size-small);
-  width: var(--sizing-medium);
   border: none;
   border-radius: var(--border-xlarge);
-  background: var(--red-gradient);
-  color: var(--white);
+  width: var(--sizing-medium);
+  font-size: var(--font-size-small);
   text-align: center;
-  cursor: pointer;
+  color: var(--white);
+  background: var(--red-gradient);
   transition: background-color 0.3s;
+  cursor: pointer;
 }
 
 .toolbar-button:hover {
@@ -135,24 +135,24 @@ a {
   grid-row: span 7 / span 7;
   grid-row-start: 2;
 
-  background-color: var(--outer-container-white);
-  padding: var(--padding-base);
-  margin-left: var(--margin-large);
   height: 94%;
+  margin-left: var(--margin-large);
+  padding: var(--padding-base);
+  background-color: var(--outer-container-white);
 }
 
 .searchbar {
   display: block;
-  padding: var(--padding-xsmall);
   position: relative;
+  padding: var(--padding-xsmall);
 }
 
 .search-input {
-  width: 100%;
   height: var(--sizing-base);
+  width: 100%;
+  padding: var(--padding-medium);
   border-radius: var(--border-medium);
   font-size: var(--font-size-medium);
-  padding: var(--padding-medium);
 }
 
 .right-side {
@@ -165,38 +165,36 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   padding: var(--padding-base);
 }
 
 .floorplan-container {
   position: relative;
-  width: 100%;
   max-width: 100%;
 }
 
 .floorplan-container img {
-  width: 100%;
   height: auto;
+  width: 100%;
 }
 
 .interactive-star {
   position: absolute;
-  width: var(--sizing-small);
   height: var(--sizing-small);
+  width: var(--sizing-small);
   background-image: url("../images/seven.png");
   background-size: cover;
-  cursor: pointer;
   transform: translate(-50%, -50%);
+  cursor: pointer;
 }
 
 .tooltip {
-  position: absolute;
-  background-color: var(--white);
-  border: var(--border-xxsmall) solid var(--black);
-  padding: var(--padding-xsmall);
   display: none;
+  position: absolute;
   z-index: 10;
+  padding: var(--padding-xsmall);
+  border: var(--border-xxsmall) solid var(--black);
+  background-color: var(--white);
 }
 
 .interactive-star:hover + .tooltip {
@@ -213,9 +211,9 @@ a {
 .zoom-button {
   padding: var(--padding-small);
   margin: var(--margin-xsmall);
-  cursor: pointer;
-  background-color: var(--light-gray);
   border: none;
+  background-color: var(--light-gray);
+  cursor: pointer;
 }
 
 .container {
@@ -229,11 +227,11 @@ a {
 }
 
 .rectangular-container {
+  margin: auto;
   border: var(--border-xxsmall) solid var(--light-gray);
   border-radius: var(--border-large);
-  width: 100%;
   height: var(--sizing-xxlarge);
-  margin: auto;
+  width: 100%;
 }
 
 .media-card {
@@ -246,28 +244,28 @@ a {
 }
 
 .card-image img {
-  width: 100%;
-  height: var(--sizing-xxlarge);
-  object-fit: cover;
   border-radius: var(--border-large);
+  height: var(--sizing-xxlarge);
+  width: 100%;
+  object-fit: cover;
 }
 
 .cta-button {
   position: absolute;
   width: 100%;
-  bottom: var(--sizing-xlarge);
   left: 50%;
+  bottom: var(--sizing-xlarge);
   transform: translateX(-50%);
   padding: var(--padding-small) var(--padding-base);
-  background: var(--submit-red);
-  color: var(--white);
   border: none;
   border-radius: var(--border-small);
-  cursor: pointer;
   text-align: center;
   font-size: var(--font-size-xlarge);
   font-size: clamp(var(--font-size-large), 3vw, var(--font-size-xlarge));
+  color: var(--white);
+  background: var(--submit-red);
   transition: background-color 0.3s;
+  cursor: pointer;
 }
 
 .cta-button:hover {
@@ -275,25 +273,25 @@ a {
 }
 
 .account-container {
+  display: flex;
   grid-column: 2 / 5;
   grid-row: 3 / 6;
-  display: flex;
-  background-color: var(--outer-container-white);
-  padding: var(--padding-large);
-  border-radius: var(--border-medium);
+
   margin: auto;
-  width: 60%;
   padding: var(--padding-xlarge);
+  width: 60%;
+  border-radius: var(--border-medium);
   font-size: var(--font-size-large);
+  background-color: var(--outer-container-white);
 }
 
 .login-form {
-  background-color: var(--outer-container-white);
   padding: var(--padding-large);
+  width: 100%;
   border-radius: var(--border-base);
   box-shadow: 0 4px 8px var(--black);
   text-align: center;
-  width: 100%;
+  background-color: var(--outer-container-white);
 }
 
 .login-form input[type="text"],
@@ -301,35 +299,35 @@ a {
 .login-form input[type="email"],
 .login-form input[type="date"] {
   width: 90%;
-  padding: var(--padding-small);
   margin-bottom: var(--margin-base);
+  padding: var(--padding-small);
   border: var(--border-xxsmall) solid var(--light-gray);
   border-radius: var(--border-xsmall);
   font-size: var(--font-size-small);
 }
 
 .login-form input[type="submit"] {
-  width: 92%;
+  margin: var(--margin-small);
   padding: var(--padding-small);
-  background: var(--submit-red);
-  color: var(--white);
+  width: 92%;
   border: none;
-  cursor: pointer;
   border-radius: var(--border-xsmall);
   font-size: var(--font-size-small);
+  color: var(--white);
+  background: var(--submit-red);
   transition: background-color 0.3s;
-  margin: var(--margin-small);
+  cursor: pointer;
 }
 
 .btn-submit {
-  background-color: var(--submit-red);
-  color: var(--white);
-  border: none;
   padding: var(--padding-small) var(--padding-base);
-  font-size: var(--font-size-small);
-  cursor: pointer;
+  border: none;
   border-radius: var(--border-small);
+  font-size: var(--font-size-small);
+  color: var(--white);
+  background-color: var(--submit-red);
   transition: background-color 0.3s;
+  cursor: pointer;
 }
 
 .btn-submit:hover {
@@ -337,22 +335,22 @@ a {
 }
 
 .flipbook {
+  display: flex;
   grid-column: 2 / 5;
   grid-row: 3 / 6;
-  display: flex;
-  background-color: var(--outer-container-white);
-  padding: var(--padding-large);
-  border-radius: var(--border-medium);
+
   margin: auto;
+  padding: var(--padding-large);
   width: 60%;
-  padding: var(--padding-xlarge);
+  border-radius: var(--border-medium);
   font-size: var(--font-size-large);
+  background-color: var(--outer-container-white);
 }
 
 .flipbook-container {
   position: relative;
-  width: 100%;
   height: 100%;
+  width: 100%;
   margin: var(--margin-xlarge) auto;
   overflow: hidden;
 }
@@ -360,19 +358,19 @@ a {
 .flipbook-wrapper {
   display: flex;
   flex-direction: row;
-  transition: transform 0.5s ease-in-out;
   height: 100%;
+  transition: transform 0.5s ease-in-out;
 }
 
 .flipbook-page {
-  min-width: 100%;
-  background-color: var(--white);
-  padding: var(--padding-base);
   box-sizing: border-box;
   display: flex;
+  padding: var(--padding-base);
   justify-content: center;
   align-items: center;
+  min-width: 100%;
   border: var(--border-xxsmall) solid var(--light-gray);
+  background-color: var(--white);
   overflow-y: auto;
 }
 
@@ -392,14 +390,14 @@ a {
 }
 
 .flipbook-button {
-  background-color: var(--submit-red);
-  color: var(--white);
-  border: none;
   padding: var(--padding-small) var(--padding-base);
-  font-size: var(--font-size-small);
-  cursor: pointer;
+  border: none;
   border-radius: var(--border-small);
+  background-color: var(--submit-red);
+  font-size: var(--font-size-small);
+  color: var(--white);
   transition: background-color 0.3s;
+  cursor: pointer;
 }
 
 .flipbook-button:hover {
@@ -408,7 +406,7 @@ a {
 
 .flipbook-buttons {
   display: flex;
-  justify-content: space-between;
   margin-top: var(--margin-medium);
   gap: var(--gap-base);
+  justify-content: space-between;
 }
