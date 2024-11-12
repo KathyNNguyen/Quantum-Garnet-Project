@@ -36,15 +36,13 @@
         </div>
       </div>
       <div class="account-container">
-        <form class="login-form" action="{{ url_for('logout') }}" method="POST">
-          <h2>Account</h2>
-          <p><strong>Username:</strong> {{ session['name'] }}</p>
-          <p><strong>First Name:</strong> {{ user[0] }}</p>
-          <p><strong>Last Name:</strong> {{ user[1] }}</p>
-          <p><strong>Email:</strong> {{ user[2] }}</p>
-          <p><strong>Birthday:</strong> {{ user[3] }}</p>
-          <p><strong>Reward Balance:</strong> ${{ user[4] }}</p>
-          <input type="submit" value="Log Out" />
+        <form class="login-form">
+          <h2>Admin Options:</h2>
+          <br /><br />
+          <button class="btn-submit">Create Account</button>
+          <button class="btn-submit">Edit Account</button>
+          <button class="btn-submit">Create Promotions</button>
+          <button class="btn-submit">Edit Promotions</button><br /><br /><br />
         </form>
       </div>
     </div>
