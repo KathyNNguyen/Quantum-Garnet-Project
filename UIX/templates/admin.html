@@ -13,6 +13,11 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='css/styles.css') }}"
     />
+    <script>
+      function redirectToCreateAccount() {
+        window.location.href = "{{ url_for('create_account') }}";
+      }
+    </script>
   </head>
 
   <body>
@@ -36,14 +41,16 @@
         </div>
       </div>
       <div class="account-container">
-        <form class="login-form">
+        <div class="login-form">
           <h2>Admin Options:</h2>
           <br /><br />
-          <button class="btn-submit">Create Account</button>
+          <button onclick="redirectToCreateAccount()" class="btn-submit">
+            Create Account
+          </button>
           <button class="btn-submit">Edit Account</button>
           <button class="btn-submit">Create Promotions</button>
           <button class="btn-submit">Edit Promotions</button><br /><br /><br />
-        </form>
+        </div>
       </div>
     </div>
   </body>
