@@ -39,7 +39,7 @@ body {
 .toolbar {
   grid-column: span 5 / span 5;
 
-  background-image: url("../images/goldBG.png");
+  background-image: url("../images/gold-BG.jpg");
   background-size: cover;
   background-position: center;
   display: flex;
