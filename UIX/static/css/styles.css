@@ -1,4 +1,48 @@
 :root {
+  /* Size Variables */
+  --margin-zero: 0rem;
+  --margin-xsmall: 0.3125rem;
+  --margin-small: 0.5rem;
+  --margin-base: 1rem;
+  --margin-medium: 1.25rem;
+  --margin-large: 2rem;
+  --margin-xlarge: 3.125rem;
+
+  --gap-zero: 0rem;
+  --gap-base: 1rem;
+  --gap-small: 1.25rem;
+  --gap-medium: 1.875rem;
+  --gap-large: 2.5rem;
+
+  --padding-xsmall: 0.325rem; /* 5px -> 0.3125rem */
+  --padding-small: 0.625rem; /* 10px -> 0.625rem */
+  --padding-base: 1.25rem; /* 20px -> 1.25rem */
+  --padding-medium: 1.5rem; /* 1.5rem */
+  --padding-large: 2rem; /* 2rem */
+  --padding-xlarge: 3rem; /* 3rem */
+
+  --border-xxsmall: 0.0625rem;
+  --border-xsmall: 0.25rem; /* 4px -> 0.25rem */
+  --border-small: 0.325rem; /* 5px -> 0.3125rem */
+  --border-base: 0.5rem; /* 8px -> 0.5rem */
+  --border-medium: 0.625rem; /* 10px -> 0.625rem */
+  --border-large: 1rem; /* 1rem */
+  --border-xlarge: 3.125rem; /* 50px -> 3.125rem */
+
+  --sizing-xsmall: 0.625rem; /* 10px -> 0.625rem */
+  --sizing-small: 0.975rem; /* 15px -> 0.9375rem */
+  --sizing-base: 4.375rem; /* 70px -> 4.375rem */
+  --sizing-medium: 6.5rem; /* 6.5rem */
+  --sizing-xlarge: 25rem; /* 25rem */
+  --sizing-mc: 35rem;
+  --sizing-xxlarge: 58.125rem; /* 930px -> 58.125rem */
+
+  --font-size-small: 1rem;
+  --font-size-medium: 1.25rem;
+  --font-size-large: 1.5rem;
+  --font-size-xlarge: 3.5rem;
+
+  /* Color variables. */
   --red-gradient: linear-gradient(
     207deg,
     rgba(120, 8, 8, 1) 19%,
@@ -12,10 +56,15 @@
     rgba(120, 8, 8, 1) 100%
   );
   --submit-red: #a20000;
+  --hover-dark-red: darkred;
+  --outer-container-white: rgba(255, 255, 255, 0.9);
+  --white: white;
+  --black: rgba(0, 0, 0, 0.2);
+  --light-gray: #ccc;
 }
 
 body {
-  margin: 0;
+  margin: var(--margin-zero);
   box-sizing: border-box;
   font-family: Arial, sans-serif;
   height: 100vh;
@@ -30,8 +79,8 @@ body {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(8, 1fr);
-  grid-column-gap: 40px;
-  grid-row-gap: 0px;
+  grid-column-gap: var(--gap-large);
+  grid-row-gap: var(--gap-zero);
   height: 100vh;
   width: 100%;
 }
@@ -44,7 +93,7 @@ body {
   background-position: center;
   display: flex;
   align-items: center;
-  height: 6.5rem;
+  height: var(--sizing-medium);
   width: 100%;
   justify-content: space-between;
 }
@@ -56,18 +105,18 @@ body {
 
 .toolbar-buttons {
   display: flex;
-  gap: 30px;
-  margin-right: 2rem;
+  gap: var(--gap-medium);
+  margin-right: var(--margin-large);
 }
 
 .toolbar-button {
-  padding: 10px 20px;
-  font-size: 1rem;
-  width: 7rem;
+  padding: var(--padding-small) var(--padding-base);
+  font-size: var(--font-size-small);
+  width: var(--sizing-medium);
   border: none;
-  border-radius: 50px;
+  border-radius: var(--border-xlarge);
   background: var(--red-gradient);
-  color: white;
+  color: var(--white);
   text-align: center;
   cursor: pointer;
   transition: background-color 0.3s;
@@ -86,24 +135,24 @@ a {
   grid-row: span 7 / span 7;
   grid-row-start: 2;
 
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 20px;
-  margin-left: 2rem;
+  background-color: var(--outer-container-white);
+  padding: var(--padding-base);
+  margin-left: var(--margin-large);
   height: 94%;
 }
 
 .searchbar {
   display: block;
-  padding: 0.25rem;
+  padding: var(--padding-xsmall);
   position: relative;
 }
 
 .search-input {
   width: 100%;
-  height: 70px;
-  border-radius: 10px;
-  font-size: 1.25rem;
-  padding: 1.5rem;
+  height: var(--sizing-base);
+  border-radius: var(--border-medium);
+  font-size: var(--font-size-medium);
+  padding: var(--padding-medium);
 }
 
 .right-side {
@@ -117,7 +166,7 @@ a {
   justify-content: center;
   align-items: center;
 
-  padding: 20px;
+  padding: var(--padding-base);
 }
 
 .floorplan-container {
@@ -133,8 +182,8 @@ a {
 
 .interactive-star {
   position: absolute;
-  width: 15px;
-  height: 15px;
+  width: var(--sizing-small);
+  height: var(--sizing-small);
   background-image: url("../images/seven.png");
   background-size: cover;
   cursor: pointer;
@@ -143,9 +192,9 @@ a {
 
 .tooltip {
   position: absolute;
-  background-color: white;
-  border: 1px solid black;
-  padding: 5px;
+  background-color: var(--white);
+  border: var(--border-xxsmall) solid var(--black);
+  padding: var(--padding-xsmall);
   display: none;
   z-index: 10;
 }
@@ -156,41 +205,39 @@ a {
 
 .zoom-controls {
   position: fixed;
-  top: 10px;
-  right: 10px;
+  top: var(--sizing-xsmall);
+  right: var(--sizing-xsmall);
   z-index: 100;
 }
 
 .zoom-button {
-  padding: 10px;
-  margin: 5px;
+  padding: var(--padding-small);
+  margin: var(--margin-xsmall);
   cursor: pointer;
-  background-color: lightgray;
+  background-color: var(--light-gray);
   border: none;
 }
 
 .container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-column-gap: 20px;
-  grid-row-gap: 20px;
-  padding: 20px;
+  grid-column-gap: var(--gap-small);
+  grid-row-gap: var(--gap-small);
+  padding: var(--padding-base);
   grid-column: span 5 / span 5;
-  margin: 1rem;
+  margin: var(--margin-base);
 }
 
 .rectangular-container {
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 1px solid #ccc;
-  border-radius: 1rem;
+  border: var(--border-xxsmall) solid var(--light-gray);
+  border-radius: var(--border-large);
   width: 100%;
-  height: 85vh;
+  height: var(--sizing-xxlarge);
   margin: auto;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .media-card {
-  max-width: 34rem;
+  max-width: var(--sizing-mc);
   overflow: hidden;
 }
 
@@ -200,51 +247,51 @@ a {
 
 .card-image img {
   width: 100%;
-  height: 930px;
+  height: var(--sizing-xxlarge);
   object-fit: cover;
-  border-radius: 1rem;
+  border-radius: var(--border-large);
 }
 
 .cta-button {
   position: absolute;
   width: 100%;
-  bottom: 25rem;
+  bottom: var(--sizing-xlarge);
   left: 50%;
   transform: translateX(-50%);
-  padding: 10px 20px;
+  padding: var(--padding-small) var(--padding-base);
   background: var(--submit-red);
-  color: white;
+  color: var(--white);
   border: none;
-  border-radius: 5px;
+  border-radius: var(--border-small);
   cursor: pointer;
   text-align: center;
-  font-size: 3.5rem;
-  font-size: clamp(1.5rem, 3vw, 3.5rem);
+  font-size: var(--font-size-xlarge);
+  font-size: clamp(var(--font-size-large), 3vw, var(--font-size-xlarge));
   transition: background-color 0.3s;
 }
 
 .cta-button:hover {
-  background-color: darkred;
+  background-color: var(--hover-dark-red);
 }
 
 .account-container {
   grid-column: 2 / 5;
   grid-row: 3 / 6;
   display: flex;
-  background-color: rgba(255, 255, 255, 0.9);
-  padding: 2rem;
-  border-radius: 10px;
+  background-color: var(--outer-container-white);
+  padding: var(--padding-large);
+  border-radius: var(--border-medium);
   margin: auto;
   width: 60%;
-  padding: 3rem;
-  font-size: 1.5rem;
+  padding: var(--padding-xlarge);
+  font-size: var(--font-size-large);
 }
 
 .login-form {
-  background-color: rgba(255, 255, 255, 0.9);
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: var(--outer-container-white);
+  padding: var(--padding-large);
+  border-radius: var(--border-base);
+  box-shadow: 0 4px 8px var(--black);
   text-align: center;
   width: 100%;
 }
@@ -254,59 +301,59 @@ a {
 .login-form input[type="email"],
 .login-form input[type="date"] {
   width: 90%;
-  padding: 10px;
-  margin-bottom: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1rem;
+  padding: var(--padding-small);
+  margin-bottom: var(--margin-base);
+  border: var(--border-xxsmall) solid var(--light-gray);
+  border-radius: var(--border-xsmall);
+  font-size: var(--font-size-small);
 }
 
 .login-form input[type="submit"] {
   width: 92%;
-  padding: 10px;
+  padding: var(--padding-small);
   background: var(--submit-red);
-  color: white;
+  color: var(--white);
   border: none;
   cursor: pointer;
-  border-radius: 4px;
-  font-size: 1rem;
+  border-radius: var(--border-xsmall);
+  font-size: var(--font-size-small);
   transition: background-color 0.3s;
-  margin: 0.5rem;
+  margin: var(--margin-small);
 }
 
 .btn-submit {
   background-color: var(--submit-red);
-  color: #fff;
+  color: var(--white);
   border: none;
-  padding: 10px 20px;
-  font-size: 16px;
+  padding: var(--padding-small) var(--padding-base);
+  font-size: var(--font-size-small);
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: var(--border-small);
   transition: background-color 0.3s;
 }
 
 .btn-submit:hover {
-  background-color: darkred;
+  background-color: var(--hover-dark-red);
 }
 
 .flipbook {
   grid-column: 2 / 5;
   grid-row: 3 / 6;
   display: flex;
-  background-color: rgba(255, 255, 255, 0.9);
-  padding: 2rem;
-  border-radius: 10px;
+  background-color: var(--outer-container-white);
+  padding: var(--padding-large);
+  border-radius: var(--border-medium);
   margin: auto;
   width: 60%;
-  padding: 3rem;
-  font-size: 1.5rem;
+  padding: var(--padding-xlarge);
+  font-size: var(--font-size-large);
 }
 
 .flipbook-container {
   position: relative;
   width: 100%;
   height: 100%;
-  margin: 50px auto;
+  margin: var(--margin-xlarge) auto;
   overflow: hidden;
 }
 
@@ -319,25 +366,23 @@ a {
 
 .flipbook-page {
   min-width: 100%;
-  background-color: #fff;
-  padding: 20px;
+  background-color: var(--white);
+  padding: var(--padding-base);
   box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid #ccc;
+  border: var(--border-xxsmall) solid var(--light-gray);
   overflow-y: auto;
 }
 
-/* Title row (thin) */
 .flipbook-title {
   text-align: center;
 }
 
-/* Content row (thicker) */
 .flipbook-content {
-  padding: 20px;
-  font-size: 1.2rem;
+  padding: var(--padding-base);
+  font-size: var(--font-size-medium);
   overflow-y: auto;
 }
 
@@ -348,22 +393,22 @@ a {
 
 .flipbook-button {
   background-color: var(--submit-red);
-  color: #fff;
+  color: var(--white);
   border: none;
-  padding: 10px 20px;
-  font-size: 16px;
+  padding: var(--padding-small) var(--padding-base);
+  font-size: var(--font-size-small);
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: var(--border-small);
   transition: background-color 0.3s;
 }
 
 .flipbook-button:hover {
-  background: var(--dark-gradient);
+  background: var(--hover-dark-red);
 }
 
 .flipbook-buttons {
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
-  gap: 1rem;
+  margin-top: var(--margin-medium);
+  gap: var(--gap-base);
 }
