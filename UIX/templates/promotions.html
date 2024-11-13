@@ -39,82 +39,65 @@
       <div class="flipbook">
         <div class="flipbook-container">
           <div class="flipbook-wrapper" id="flipbookWrapper">
-            <!-- Page 1 -->
+            {% if promotion_data %} {% for promo in promotion_data %}
             <div class="flipbook-page">
               <div class="flipbook-grid">
-                <!-- Title Row -->
                 <div class="flipbook-title">
-                  <h2>About Quantum Garnet</h2>
+                  <h2>Promotion {{ loop.index }}</h2>
                 </div>
 
-                <!-- Content Row -->
                 <div class="flipbook-content">
-                  <p>Promotion #1 Name and Reward Value Here</p>
-                  <p><strong>Reward Balance:</strong> ${{ reward_balance }}</p>
-                  <p><strong>Promotion Tier:</strong> {{ promotion_tier }}</p>
+                  <p>
+                    <strong>Promotion Name:</strong> {{ promo.promotion_name }}
+                  </p>
+                  <p><strong>Reward Value:</strong> {{ promo.reward_value }}</p>
+                  <p>
+                    <strong>Promotion Tier:</strong> {{ user_promotion_tier }}
+                  </p>
+                  <p>
+                    <strong>Reward Balance:</strong> {{ user_reward_balance }}
+                  </p>
                 </div>
 
-                <!-- Button Row -->
                 <div class="flipbook-buttons-row">
                   <div class="flipbook-buttons">
-                    <button class="flipbook-button" id="prevButton1">
+                    {% if not loop.first %}
+                    <button
+                      class="flipbook-button"
+                      id="prevButton{{ loop.index }}"
+                    >
                       Previous
                     </button>
-                    <button class="flipbook-button" id="nextButton1">
+                    {% endif %} {% if not loop.last %}
+                    <button
+                      class="flipbook-button"
+                      id="nextButton{{ loop.index }}"
+                    >
                       Next
                     </button>
+                    {% endif %}
                   </div>
                 </div>
               </div>
             </div>
-
-            <!-- Page 2 -->
+            {% endfor %} {% else %}
             <div class="flipbook-page">
               <div class="flipbook-grid">
-                <!-- Title Row -->
                 <div class="flipbook-title">
-                  <h3>Meet the Team:</h3>
+                  <h2>No Promotions Available</h2>
                 </div>
-
-                <!-- Content Row -->
                 <div class="flipbook-content">
-                  <p>Promotion #2 Name and Reward Value Here</p>
+                  <p>Check back later for available promotions.</p>
                 </div>
-
-                <!-- Button Row -->
                 <div class="flipbook-buttons-row">
                   <div class="flipbook-buttons">
-                    <button class="flipbook-button" id="prevButton2">
-                      Previous
-                    </button>
-                    <button class="flipbook-button" id="nextButton2">
-                      Next
-                    </button>
+                    <button class="flipbook-button" disabled>Previous</button>
+                    <button class="flipbook-button" disabled>Next</button>
                   </div>
                 </div>
               </div>
             </div>
-
-            <!-- Page 2 -->
-            <div class="flipbook-page">
-              <div class="flipbook-grid">
-                <div class="flipbook-content">
-                  <p>Promotion #3 Here</p>
-                </div>
-
-                <!-- Button Row -->
-                <div class="flipbook-buttons-row">
-                  <div class="flipbook-buttons">
-                    <button class="flipbook-button" id="prevButton">
-                      Previous
-                    </button>
-                    <button class="flipbook-button" id="nextButton">
-                      Next
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
+            {% endif %}
           </div>
         </div>
       </div>
@@ -125,17 +108,14 @@
       const flipbookWrapper = document.getElementById("flipbookWrapper");
       const totalPages = flipbookWrapper.children.length;
 
-      // Add event listeners to all 'previous' and 'next' buttons dynamically
       document.querySelectorAll(".flipbook-button").forEach((button) => {
         button.addEventListener("click", function () {
           if (button.id.includes("prev")) {
-            // Navigate to the previous page
             if (currentPage > 0) {
               currentPage--;
               updateFlipbook();
             }
           } else if (button.id.includes("next")) {
-            // Navigate to the next page
             if (currentPage < totalPages - 1) {
               currentPage++;
               updateFlipbook();
