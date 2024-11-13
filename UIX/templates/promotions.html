@@ -35,6 +35,116 @@
           {% endif %}
         </div>
       </div>
+
+      <div class="flipbook">
+        <div class="flipbook-container">
+          <div class="flipbook-wrapper" id="flipbookWrapper">
+            <!-- Page 1 -->
+            <div class="flipbook-page">
+              <div class="flipbook-grid">
+                <!-- Title Row -->
+                <div class="flipbook-title">
+                  <h2>About Quantum Garnet</h2>
+                </div>
+
+                <!-- Content Row -->
+                <div class="flipbook-content">
+                  <p>Promotion #1 Here</p>
+                </div>
+
+                <!-- Button Row -->
+                <div class="flipbook-buttons-row">
+                  <div class="flipbook-buttons">
+                    <button class="flipbook-button" id="prevButton1">
+                      Previous
+                    </button>
+                    <button class="flipbook-button" id="nextButton1">
+                      Next
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Page 2 -->
+            <div class="flipbook-page">
+              <div class="flipbook-grid">
+                <!-- Title Row -->
+                <div class="flipbook-title">
+                  <h3>Meet the Team:</h3>
+                </div>
+
+                <!-- Content Row -->
+                <div class="flipbook-content">
+                  <p>Promotion #2 Here</p>
+                </div>
+
+                <!-- Button Row -->
+                <div class="flipbook-buttons-row">
+                  <div class="flipbook-buttons">
+                    <button class="flipbook-button" id="prevButton2">
+                      Previous
+                    </button>
+                    <button class="flipbook-button" id="nextButton2">
+                      Next
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Page 2 -->
+            <div class="flipbook-page">
+              <div class="flipbook-grid">
+                <div class="flipbook-content">
+                  <p>Promotion #3 Here</p>
+                </div>
+
+                <!-- Button Row -->
+                <div class="flipbook-buttons-row">
+                  <div class="flipbook-buttons">
+                    <button class="flipbook-button" id="prevButton">
+                      Previous
+                    </button>
+                    <button class="flipbook-button" id="nextButton">
+                      Next
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <script>
+      let currentPage = 0;
+      const flipbookWrapper = document.getElementById("flipbookWrapper");
+      const totalPages = flipbookWrapper.children.length;
+
+      // Add event listeners to all 'previous' and 'next' buttons dynamically
+      document.querySelectorAll(".flipbook-button").forEach((button) => {
+        button.addEventListener("click", function () {
+          if (button.id.includes("prev")) {
+            // Navigate to the previous page
+            if (currentPage > 0) {
+              currentPage--;
+              updateFlipbook();
+            }
+          } else if (button.id.includes("next")) {
+            // Navigate to the next page
+            if (currentPage < totalPages - 1) {
+              currentPage++;
+              updateFlipbook();
+            }
+          }
+        });
+      });
+
+      function updateFlipbook() {
+        flipbookWrapper.style.transform = `translateX(-${currentPage * 100}%)`;
+      }
+    </script>
   </body>
 </html>
