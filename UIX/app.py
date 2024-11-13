@@ -8,7 +8,9 @@ app = Flask(__name__)
 # Set a secret key for sessions.
 app.secret_key = secrets.token_hex(16)
 # Define the new database file.
-db_file = 'UIX/user_accounts.db'
+user_accounts_db = 'UIX/user_accounts.db'
+promotions_db = 'UIX/promotions.db'
+
 
 @app.route('/')
 def home():
@@ -23,7 +25,7 @@ def account():
     if 'logged_in' in session:
         username = session['name']
         try:
-            with sql.connect(db_file) as con:
+            with sql.connect(user_accounts_db) as con:
                 cur = con.cursor()
                 cur.execute("SELECT first_name, last_name, email, date_of_birth, reward_balance, promotion_tier FROM user_accounts WHERE username = ?", (username,))
                 user = cur.fetchone()
@@ -59,7 +61,7 @@ def create_account():
         password = request.form['password']
 
         try:
-            with sql.connect(db_file) as con:
+            with sql.connect(user_accounts_db) as con:
                 cur = con.cursor()
 
                 cur.execute("SELECT MAX(account_num) FROM user_accounts")
@@ -101,7 +103,7 @@ def login():
         password = request.form['password']
 
         try:
-            with sql.connect(db_file) as con:
+            with sql.connect(user_accounts_db) as con:
                 cur = con.cursor()
                 cur.execute("SELECT * FROM user_accounts WHERE username = ?", (username,))
                 user = cur.fetchone()
@@ -137,17 +139,31 @@ def promotions():
     if 'logged_in' in session:
         username = session['name']
         try:
-            with sql.connect(db_file) as con:
-                cur = con.cursor()
-                cur.execute("SELECT reward_balance, promotion_tier FROM user_accounts WHERE username = ?", (username,))
-                user = cur.fetchone()
+            with sql.connect(user_accounts_db) as con_user:
+                cur_user = con_user.cursor()
+                cur_user.execute("SELECT reward_balance, promotion_tier FROM user_accounts WHERE username = ?", (username,))
+                user = cur_user.fetchone()
                 
                 if user:
-                    # Pass a dictionary to the template for easier reference
-                    return render_template('promotions.html', reward_balance=user[0], promotion_tier=user[1])
+                    user_reward_balance = user[0]
+                    user_promotion_tier = user[1]
+
+                    with sql.connect(promotions_db) as con_promotions:
+                        cur_promotions = con_promotions.cursor()
+                        cur_promotions.execute("SELECT promotion_name, reward_value FROM promotions WHERE promotion_tier = ?", (user_promotion_tier,))
+                        promotions = cur_promotions.fetchall()
+
+                        if promotions:
+                            promotion_data = [{'promotion_name': name, 'reward_value': value} for name, value in promotions]
+                        else:
+                            flash('No promotions found for this user', 'danger')
+                            return redirect(url_for('home'))
+                        
+                    return render_template('promotions.html', user_reward_balance=user_reward_balance, user_promotion_tier=user_promotion_tier, promotion_data=promotion_data)
                 else:
                     flash('No promotions found for this user', 'danger')
                     return redirect(url_for('home'))
+                
         except sql.Error as e:
             flash(f"Database error: {e}", 'danger')
             return redirect(url_for('home'))
