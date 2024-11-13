@@ -25,7 +25,7 @@ def account():
         try:
             with sql.connect(db_file) as con:
                 cur = con.cursor()
-                cur.execute("SELECT first_name, last_name, email, date_of_birth, reward_balance FROM user_accounts WHERE username = ?", (username,))
+                cur.execute("SELECT first_name, last_name, email, date_of_birth, reward_balance, promotion_tier FROM user_accounts WHERE username = ?", (username,))
                 user = cur.fetchone()
                 
                 if user:
@@ -134,7 +134,12 @@ def logout():
 
 @app.route('/promotions')
 def promotions():
-    return render_template('promotions.html')
+    if 'logged_in' in session:
+        return render_template('promotions.html') 
+    else:
+        flash('You must be logged in to view promotions', 'warning') 
+        return redirect(url_for('login')) 
+
 
 @app.route('/rewards')
 def rewards():
