@@ -135,10 +135,27 @@ def logout():
 @app.route('/promotions')
 def promotions():
     if 'logged_in' in session:
-        return render_template('promotions.html') 
+        username = session['name']
+        try:
+            with sql.connect(db_file) as con:
+                cur = con.cursor()
+                cur.execute("SELECT reward_balance, promotion_tier FROM user_accounts WHERE username = ?", (username,))
+                user = cur.fetchone()
+                
+                if user:
+                    # Pass a dictionary to the template for easier reference
+                    return render_template('promotions.html', reward_balance=user[0], promotion_tier=user[1])
+                else:
+                    flash('No promotions found for this user', 'danger')
+                    return redirect(url_for('home'))
+        except sql.Error as e:
+            flash(f"Database error: {e}", 'danger')
+            return redirect(url_for('home'))
     else:
-        flash('You must be logged in to view promotions', 'warning') 
-        return redirect(url_for('login')) 
+        flash('You must be logged in to view promotions', 'warning')
+        return redirect(url_for('login'))
+
+
 
 
 @app.route('/rewards')
