@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, flash, redirect, url_for
+from flask import Flask, render_template, request, session, flash, redirect, url_for, jsonify
 import sqlite3 as sql
 import os
 import secrets
@@ -177,6 +177,47 @@ def promotions():
 @app.route('/rewards')
 def rewards():
     return render_template('rewards.html')
+
+@app.route('/api/slot-machines')
+def get_slot_machines():
+    connection = sqlite3.connect('db.sql')
+    cursor = connection.cursor()
+
+    query = """
+        SELECT 
+            machine_id, name, availability, average_session, 
+            location, location_features, game_theme, game_type, 
+            game_features, maximum_bet, minimum_bet, rtp, reward_program,
+            top, left
+        FROM slot_machines
+    """
+    cursor.execute(query)
+    rows = cursor.fetchall()
+
+    # Map results to JSON format
+    machines = [
+        {
+            "machine_id": row[0],
+            "name": row[1],
+            "availability": row[2],
+            "average_session": row[3],
+            "location": row[4],
+            "location_features": row[5],
+            "game_theme": row[6],
+            "game_type": row[7],
+            "game_features": row[8],
+            "maximum_bet": row[9],
+            "minimum_bet": row[10],
+            "rtp": row[11],
+            "reward_program": row[12],
+            "top": row[13],
+            "left": row[14],
+        }
+        for row in rows
+    ]
+
+    connection.close()
+    return jsonify(machines)
 
 @app.route('/slot-map')
 def slot_map():
