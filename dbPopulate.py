@@ -14,5 +14,5 @@ except sqlite3.Error as e:
     print(f"An error occurred: {e}")
 
 finally:
-cursor.close()
-conn.close()
+    cursor.close()
+    conn.close()
