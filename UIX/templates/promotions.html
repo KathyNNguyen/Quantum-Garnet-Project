@@ -50,12 +50,16 @@
                   <p>
                     <strong>Promotion Name:</strong> {{ promo.promotion_name }}
                   </p>
-                  <p><strong>Reward Value:</strong> {{ promo.reward_value }}</p>
+                  <p>
+                    <strong>Reward Value:</strong> ${{
+                    "%.2f"|format(promo.reward_value) }}
+                  </p>
                   <p>
                     <strong>Promotion Tier:</strong> {{ user_promotion_tier }}
                   </p>
                   <p>
-                    <strong>Reward Balance:</strong> {{ user_reward_balance }}
+                    <strong>Reward Balance:</strong> ${{
+                    "%.2f"|format(user_reward_balance) }}
                   </p>
                 </div>
 
