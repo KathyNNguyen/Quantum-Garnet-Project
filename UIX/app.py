@@ -47,7 +47,25 @@ def account():
     
 @app.route('/admin')
 def admin():
-    return render_template('admin.html')
+    if 'logged_in' in session:
+        username = session['name']
+        try:
+            with sql.connect(user_accounts_db) as con:
+                cur = con.cursor()
+                cur.execute("SELECT security_level FROM user_accounts WHERE username = ?", (username,))
+                result = cur.fetchone()
+                
+                if result and result[0] == 9:
+                    return render_template('admin.html')
+                else:
+                    flash('Access denied: Admins only', 'danger')
+                    return redirect(url_for('home'))
+        except sql.Error as e:
+            flash(f"Database error: {e}", 'danger')
+            return redirect(url_for('home'))
+    else:
+        flash('You must be logged in to access this page', 'warning')
+        return redirect(url_for('login'))
 
 @app.route('/big-winners')
 def big_winners():
@@ -97,36 +115,57 @@ def create_account():
 
 @app.route('/create-promotion', methods=['GET', 'POST'])
 def create_promotion():
-    if request.method == 'POST':
-        promotion_tier = request.form['promotion_tier']
-        promotion_name = request.form['promotion_name']
-        reward_value = request.form['reward_value']
-
+    if 'logged_in' in session:
+        username = session['name']
         try:
-            with sql.connect(promotions_db) as con:
+            with sql.connect(user_accounts_db) as con:
                 cur = con.cursor()
+                # Retrieve the user's security level
+                cur.execute("SELECT security_level FROM user_accounts WHERE username = ?", (username,))
+                result = cur.fetchone()
 
-                cur.execute("SELECT MAX(promotion_id) FROM promotions")
-                max_promotion_id = cur.fetchone()[0]
-                if max_promotion_id is None:
-                    promotion_id = 1001
+                if result and result[0] == 9:  # Check if security_level is 9
+                    if request.method == 'POST':
+                        promotion_tier = request.form['promotion_tier']
+                        promotion_name = request.form['promotion_name']
+                        reward_value = request.form['reward_value']
+
+                        try:
+                            with sql.connect(promotions_db) as con:
+                                cur = con.cursor()
+
+                                cur.execute("SELECT MAX(promotion_id) FROM promotions")
+                                max_promotion_id = cur.fetchone()[0]
+                                if max_promotion_id is None:
+                                    promotion_id = 1001
+                                else:
+                                    promotion_id = max_promotion_id + 1
+
+                                cur.execute("""
+                                    INSERT INTO promotions (promotion_id, promotion_tier, promotion_name, reward_value)
+                                    VALUES (?, ?, ?, ?)
+                                """, (promotion_id, promotion_tier, promotion_name, reward_value))
+
+                                con.commit()
+                                flash('Promotion created successfully!', 'success')
+                                return redirect(url_for('admin'))  # Redirect to the admin page or another suitable page
+
+                        except sql.Error as e:
+                            flash(f"Database error: {e}", 'danger')
+                            return redirect(url_for('create_promotion'))  # Redirect back to the form if there was an error
+
+                    return render_template('create-promotion.html')  # Render the create-promotion.html template
                 else:
-                    promotion_id = max_promotion_id + 1
-
-                cur.execute("""
-                    INSERT INTO promotions (promotion_id, promotion_tier, promotion_name, reward_value)
-                    VALUES (?, ?, ?, ?)
-                """, (promotion_id, promotion_tier, promotion_name, reward_value))
-
-                con.commit()
-                flash('Promotion created successfully!', 'success')
-                return redirect(url_for('admin'))  # Redirect to the admin page or another suitable page
+                    flash('Access denied: Admins only', 'danger')
+                    return redirect(url_for('home'))  # Redirect non-admin users to the home page
 
         except sql.Error as e:
             flash(f"Database error: {e}", 'danger')
-            return redirect(url_for('create_promotion'))  # Redirect back to the form if there was an error
+            return redirect(url_for('home'))  # Redirect to the home page in case of an error
 
-    return render_template('create-promotion.html')  # Render the create-promotion.html template
+    else:
+        flash('You must be logged in to access this page', 'warning')
+        return redirect(url_for('login'))  # Redirect unauthenticated users to the login page
 
 
 @app.route('/directory')

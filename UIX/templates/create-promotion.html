@@ -28,7 +28,11 @@
           <a href="{{ url_for('directory') }}" class="toolbar-button"
             >Directory</a
           >
+          {% if session.get('logged_in') %}
+          <a href="{{ url_for('account') }}" class="toolbar-button">Account</a>
+          {% else %}
           <a href="{{ url_for('login') }}" class="toolbar-button">Login</a>
+          {% endif %}
         </div>
       </div>
       <div class="account-container">
