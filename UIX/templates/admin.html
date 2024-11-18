@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Favicon -->
     <link
       rel="icon"
       href="{{ url_for('static', filename='images/seven2.png') }}"
@@ -13,11 +14,13 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='css/styles.css') }}"
     />
+    <!-- Redirect to Create Account -->
     <script>
       function redirectToCreateAccount() {
         window.location.href = "{{ url_for('create_account') }}";
       }
     </script>
+    <!-- Redirect to Create Promotion -->
     <script>
       function redirectToCreatePromotion() {
         window.location.href = "{{ url_for('create_promotion') }}";
@@ -26,8 +29,11 @@
   </head>
 
   <body>
+    <!-- Wrapper for entire page content -->
     <div class="wrapper">
+      <!-- Toolbar with navigation buttons -->
       <div class="toolbar">
+        <!-- Logo -->
         <img
           src="{{ url_for('static', filename='images/logo2.png') }}"
           alt="Quantum Garnet Casino"
@@ -38,6 +44,7 @@
           <a href="{{ url_for('directory') }}" class="toolbar-button"
             >Directory</a
           >
+          <!-- If logged in, login button becomes account button. -->
           {% if session.get('logged_in') %}
           <a href="{{ url_for('account') }}" class="toolbar-button">Account</a>
           {% else %}
@@ -49,9 +56,11 @@
         <div class="login-form">
           <h2>Admin Options:</h2>
           <br /><br />
+          <!-- Create Account Button -->
           <button onclick="redirectToCreateAccount()" class="btn-submit">
             Create Account
           </button>
+          <!-- Create Promotion Button -->
           <button onclick="redirectToCreatePromotion()" class="btn-submit">
             Create Promotions
           </button>

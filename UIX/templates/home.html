@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Favicon -->
     <link
       rel="icon"
       href="{{ url_for('static', filename='images/seven2.png') }}"
@@ -16,8 +17,11 @@
   </head>
 
   <body>
+    <!-- Wrapper for entire page content -->
     <div class="wrapper">
+      <!-- Toolbar with navigation buttons -->
       <div class="toolbar">
+        <!-- Logo -->
         <img
           src="{{ url_for('static', filename='images/logo2.png') }}"
           alt="Quantum Garnet Casino"
@@ -28,6 +32,7 @@
           <a href="{{ url_for('directory') }}" class="toolbar-button"
             >Directory</a
           >
+          <!-- If logged in, login button becomes account button. -->
           {% if session.get('logged_in') %}
           <a href="{{ url_for('account') }}" class="toolbar-button">Account</a>
           {% else %}
@@ -38,6 +43,7 @@
       <div class="container">
         <div class="rectangular-container">
           <div class="media-card">
+            <!-- Slot Map -->
             <div class="card-image">
               <img
                 src="{{ url_for('static', filename='images/slots.png') }}"
@@ -51,6 +57,7 @@
         </div>
         <div class="rectangular-container">
           <div class="media-card">
+            <!-- Promotions -->
             <div class="card-image">
               <img
                 src="{{ url_for('static', filename='images/casino.jpg') }}"
@@ -64,6 +71,7 @@
         </div>
         <div class="rectangular-container">
           <div class="media-card">
+            <!-- QG Rewards -->
             <div class="card-image">
               <img
                 src="{{ url_for('static', filename='images/gambling.png') }}"
@@ -77,6 +85,7 @@
         </div>
         <div class="rectangular-container">
           <div class="media-card">
+            <!-- Big Winners -->
             <div class="card-image">
               <img
                 src="{{ url_for('static', filename='images/roulette.png') }}"
