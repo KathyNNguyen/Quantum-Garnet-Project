@@ -18,6 +18,11 @@
         window.location.href = "{{ url_for('create_account') }}";
       }
     </script>
+    <script>
+      function redirectToCreatePromotion() {
+        window.location.href = "{{ url_for('create_promotion') }}";
+      }
+    </script>
   </head>
 
   <body>
@@ -47,7 +52,9 @@
           <button onclick="redirectToCreateAccount()" class="btn-submit">
             Create Account
           </button>
-          <button class="btn-submit">Create Promotions</button>
+          <button onclick="redirectToCreatePromotion()" class="btn-submit">
+            Create Promotions
+          </button>
         </div>
       </div>
     </div>
