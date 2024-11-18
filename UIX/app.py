@@ -27,12 +27,10 @@ def account():
         try:
             with sql.connect(user_accounts_db) as con:
                 cur = con.cursor()
-                # Update the query to include security_level
                 cur.execute("SELECT first_name, last_name, email, date_of_birth, reward_balance, promotion_tier, security_level FROM user_accounts WHERE username = ?", (username,))
                 user = cur.fetchone()
                 
                 if user:
-                    # Pass the security_level along with other user data
                     return render_template('account.html', user=user)
                 else:
                     flash('User not found', 'danger')
@@ -73,44 +71,91 @@ def big_winners():
 
 @app.route('/create-account', methods=['GET', 'POST'])
 def create_account():
-    if request.method == 'POST':
-        first_name = request.form['first_name']
-        last_name = request.form['last_name']
-        email = request.form['email']
-        date_of_birth = request.form['date_of_birth']
-        username = request.form['username']
-        password = request.form['password']
+    if 'logged_in' in session:
+        if session.get('security_level') == 9:
+            if request.method == 'POST':
+                first_name = request.form['first_name']
+                last_name = request.form['last_name']
+                email = request.form['email']
+                date_of_birth = request.form['date_of_birth']
+                username = request.form['username']
+                password = request.form['password']
 
-        try:
-            with sql.connect(user_accounts_db) as con:
-                cur = con.cursor()
+                try:
+                    with sql.connect(user_accounts_db) as con:
+                        cur = con.cursor()
 
-                cur.execute("SELECT MAX(account_num) FROM user_accounts")
-                max_account_num = cur.fetchone()[0]
-                if max_account_num is None:
-                    account_num = 1000001
-                else:
-                    account_num = max_account_num + 1
+                        cur.execute("SELECT MAX(account_num) FROM user_accounts")
+                        max_account_num = cur.fetchone()[0]
+                        if max_account_num is None:
+                            account_num = 1000001
+                        else:
+                            account_num = max_account_num + 1
 
-                password_hash = password
+                        password_hash = password
 
-                reward_balance = 0
-                security_level = 1
+                        reward_balance = 0
+                        security_level = 1 
 
-                cur.execute("""
-                    INSERT INTO user_accounts (account_num, username, password_hash, first_name, last_name, email, date_of_birth, reward_balance, security_level)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-                """, (account_num, username, password_hash, first_name, last_name, email, date_of_birth, reward_balance, security_level))
+                        cur.execute("""
+                            INSERT INTO user_accounts (account_num, username, password_hash, first_name, last_name, email, date_of_birth, reward_balance, security_level)
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                        """, (account_num, username, password_hash, first_name, last_name, email, date_of_birth, reward_balance, security_level))
 
-                con.commit()
-                flash('Account created successfully!', 'success')
-                return redirect(url_for('login'))
+                        con.commit()
+                        flash('Account created successfully!', 'success')
+                        return redirect(url_for('home'))
 
-        except sql.Error as e:
-            flash(f"Database error: {e}", 'danger')
-            return redirect(url_for('create_account'))
+                except sql.Error as e:
+                    flash(f"Database error: {e}", 'danger')
+                    return redirect(url_for('create_account'))
 
-    return render_template('create-account.html')
+            return render_template('create-account.html') 
+
+        else:
+            flash('Access denied: Admins only', 'danger')
+            return redirect(url_for('home')) 
+
+    else:
+        if request.method == 'POST':
+            first_name = request.form['first_name']
+            last_name = request.form['last_name']
+            email = request.form['email']
+            date_of_birth = request.form['date_of_birth']
+            username = request.form['username']
+            password = request.form['password']
+
+            try:
+                with sql.connect(user_accounts_db) as con:
+                    cur = con.cursor()
+
+                    cur.execute("SELECT MAX(account_num) FROM user_accounts")
+                    max_account_num = cur.fetchone()[0]
+                    if max_account_num is None:
+                        account_num = 1000001
+                    else:
+                        account_num = max_account_num + 1
+
+                    password_hash = password
+
+                    reward_balance = 0
+                    security_level = 1 
+
+                    cur.execute("""
+                        INSERT INTO user_accounts (account_num, username, password_hash, first_name, last_name, email, date_of_birth, reward_balance, security_level)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    """, (account_num, username, password_hash, first_name, last_name, email, date_of_birth, reward_balance, security_level))
+
+                    con.commit()
+                    flash('Account created successfully!', 'success')
+                    return redirect(url_for('login'))  
+
+            except sql.Error as e:
+                flash(f"Database error: {e}", 'danger')
+                return redirect(url_for('create_account'))
+
+        return render_template('create-account.html')
+
 
 
 @app.route('/create-promotion', methods=['GET', 'POST'])
@@ -120,11 +165,10 @@ def create_promotion():
         try:
             with sql.connect(user_accounts_db) as con:
                 cur = con.cursor()
-                # Retrieve the user's security level
                 cur.execute("SELECT security_level FROM user_accounts WHERE username = ?", (username,))
                 result = cur.fetchone()
 
-                if result and result[0] == 9:  # Check if security_level is 9
+                if result and result[0] == 9:
                     if request.method == 'POST':
                         promotion_tier = request.form['promotion_tier']
                         promotion_name = request.form['promotion_name']
@@ -148,24 +192,24 @@ def create_promotion():
 
                                 con.commit()
                                 flash('Promotion created successfully!', 'success')
-                                return redirect(url_for('admin'))  # Redirect to the admin page or another suitable page
+                                return redirect(url_for('admin'))
 
                         except sql.Error as e:
                             flash(f"Database error: {e}", 'danger')
-                            return redirect(url_for('create_promotion'))  # Redirect back to the form if there was an error
+                            return redirect(url_for('create_promotion'))
 
-                    return render_template('create-promotion.html')  # Render the create-promotion.html template
+                    return render_template('create-promotion.html')
                 else:
                     flash('Access denied: Admins only', 'danger')
-                    return redirect(url_for('home'))  # Redirect non-admin users to the home page
+                    return redirect(url_for('home')) 
 
         except sql.Error as e:
             flash(f"Database error: {e}", 'danger')
-            return redirect(url_for('home'))  # Redirect to the home page in case of an error
+            return redirect(url_for('home'))
 
     else:
         flash('You must be logged in to access this page', 'warning')
-        return redirect(url_for('login'))  # Redirect unauthenticated users to the login page
+        return redirect(url_for('login'))
 
 
 @app.route('/directory')
