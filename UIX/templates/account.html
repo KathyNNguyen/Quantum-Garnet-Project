@@ -13,6 +13,11 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='css/styles.css') }}"
     />
+    <script>
+      function redirectToAdmin() {
+        window.location.href = "{{ url_for('admin') }}";
+      }
+    </script>
   </head>
 
   <body>
@@ -45,8 +50,14 @@
           <p><strong>Birthday:</strong> {{ user[3] }}</p>
           <p><strong>Reward Balance:</strong> ${{ user[4] }}</p>
           <p><strong>Promotion Tier:</strong> {{ user[5] }}</p>
+
           <input type="submit" value="Log Out" />
         </form>
+
+        {% if session.get('security_level') == 9 %}
+        <!-- Admin Button -->
+        <button onclick="redirectToAdmin()" class="btn-submit">Admin</button>
+        {% endif %}
       </div>
     </div>
   </body>

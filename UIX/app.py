@@ -27,10 +27,12 @@ def account():
         try:
             with sql.connect(user_accounts_db) as con:
                 cur = con.cursor()
-                cur.execute("SELECT first_name, last_name, email, date_of_birth, reward_balance, promotion_tier FROM user_accounts WHERE username = ?", (username,))
+                # Update the query to include security_level
+                cur.execute("SELECT first_name, last_name, email, date_of_birth, reward_balance, promotion_tier, security_level FROM user_accounts WHERE username = ?", (username,))
                 user = cur.fetchone()
                 
                 if user:
+                    # Pass the security_level along with other user data
                     return render_template('account.html', user=user)
                 else:
                     flash('User not found', 'danger')
@@ -41,6 +43,7 @@ def account():
     else:
         flash('You must be logged in to view your account', 'warning')
         return redirect(url_for('login'))
+
     
 @app.route('/admin')
 def admin():
@@ -111,7 +114,7 @@ def login():
                 if user and user[2] == password:
                     session['logged_in'] = True
                     session['name'] = user[1]
-                    session['SecurityLevel'] = user[8]
+                    session['security_level'] = user[9]
                     flash('Login successful!', 'success')
                     return redirect(url_for('home'))
                 else:
@@ -170,8 +173,6 @@ def promotions():
     else:
         flash('You must be logged in to view promotions', 'warning')
         return redirect(url_for('login'))
-
-
 
 
 @app.route('/rewards')
