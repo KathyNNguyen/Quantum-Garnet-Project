@@ -159,5 +159,36 @@ function addInteractiveStars() {
         container.appendChild(tooltip);
     });
 }
+//Search bar / query
+const searchMachineTemplate = document.querySelector("[data-machine-template]")
+const searchMachineContainer = document.querySelector("[data-machine-display-container]")
+const searchInput = document.querySelector("[data-search]")
+
+let machinesS = []
+
+searchInput.addEventListener("input", (e) => {
+    const value = e.target.value.toLowerCase()
+    machinesS.forEach(machine => {
+        const isVisible = machine.name.toLowerCase().includes(value)
+        machine.element.classList.toggle("hide", !isVisible)
+    })
+    //console.log(machinesS)
+})
+
+fetch("https://jsonplaceholder.typicode.com/users", )//"http://localhost:5000/api/slot_machines",{mode: "no-cors"}
+    .then(res=>res.json())
+    .then(data => {
+        machinesS = data.map(machine => {
+            const searchDisplay = searchMachineTemplate.content.cloneNode(true).children[0]
+            const header = searchDisplay.querySelector("[machine-header]")
+            const body = searchDisplay.querySelector("[machine-body]")
+            header.textContent = machine.name
+            body.textContent = machine.id
+            searchMachineContainer.append(searchDisplay)
+            return {name: machine.name, id: machine.machine_id, element: searchDisplay}
+            //console.log(machine)
+        })
+
+    })
 
 window.onload = addInteractiveStars;

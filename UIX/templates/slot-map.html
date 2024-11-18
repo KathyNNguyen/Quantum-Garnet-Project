@@ -42,8 +42,16 @@
             id="search-box"
             class="search-input"
             placeholder="Search..."
+            data-search
           />
         </div>
+          <div class="search-machines" data-machine-display-container></div>
+          <template data-machine-template>
+              <div class="machine">
+                  <div class="header" machine-header></div>
+                  <div class="body" machine-body></div>
+              </div>
+          </template>
       </div>
       <div class="right-side">
         <div class="floorplan-container" id="floorplan-container">

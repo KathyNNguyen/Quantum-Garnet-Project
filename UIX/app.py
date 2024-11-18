@@ -180,7 +180,7 @@ def rewards():
 
 @app.route('/api/slot-machines')
 def get_slot_machines():
-    connection = sqlite3.connect('db.sql')
+    connection = sql.connect('db.sql')
     cursor = connection.cursor()
 
     query = """
@@ -222,7 +222,6 @@ def get_slot_machines():
 @app.route('/slot-map')
 def slot_map():
     return render_template('slot-map.html')
-
 
 if __name__ == '__main__':
     app.run(debug=True)
