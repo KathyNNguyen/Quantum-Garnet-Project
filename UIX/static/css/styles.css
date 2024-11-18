@@ -385,6 +385,7 @@ a {
   padding: var(--padding-base);
   font-size: var(--font-size-medium);
   overflow-y: auto;
+  text-align: center;
 }
 
 .flipbook-buttons-row {
