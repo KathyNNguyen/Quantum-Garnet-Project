@@ -95,6 +95,40 @@ def create_account():
     return render_template('create-account.html')
 
 
+@app.route('/create-promotion', methods=['GET', 'POST'])
+def create_promotion():
+    if request.method == 'POST':
+        promotion_tier = request.form['promotion_tier']
+        promotion_name = request.form['promotion_name']
+        reward_value = request.form['reward_value']
+
+        try:
+            with sql.connect(promotions_db) as con:
+                cur = con.cursor()
+
+                cur.execute("SELECT MAX(promotion_id) FROM promotions")
+                max_promotion_id = cur.fetchone()[0]
+                if max_promotion_id is None:
+                    promotion_id = 1001
+                else:
+                    promotion_id = max_promotion_id + 1
+
+                cur.execute("""
+                    INSERT INTO promotions (promotion_id, promotion_tier, promotion_name, reward_value)
+                    VALUES (?, ?, ?, ?)
+                """, (promotion_id, promotion_tier, promotion_name, reward_value))
+
+                con.commit()
+                flash('Promotion created successfully!', 'success')
+                return redirect(url_for('admin'))  # Redirect to the admin page or another suitable page
+
+        except sql.Error as e:
+            flash(f"Database error: {e}", 'danger')
+            return redirect(url_for('create_promotion'))  # Redirect back to the form if there was an error
+
+    return render_template('create-promotion.html')  # Render the create-promotion.html template
+
+
 @app.route('/directory')
 def directory():
     return render_template('directory.html')
