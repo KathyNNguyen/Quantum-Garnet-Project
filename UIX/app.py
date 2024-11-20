@@ -9,7 +9,7 @@ app.secret_key = secrets.token_hex(16)
 # Define the database files.
 user_accounts_db = 'UIX/user_accounts.db'
 promotions_db = 'UIX/promotions.db'
-slot_machines_db = 'UIX/slot_machines.db'
+slot_machines_db = 'slot_machines.db'
 
 # Route for home page.
 @app.route('/')
@@ -334,15 +334,19 @@ def promotions():
 def rewards():
     return render_template('rewards.html')
 
+@app.route('/slot-map')
+def slot_map():
+    return render_template('slot-map.html')
+
 @app.route('/api/slot-machines')
 def get_slot_machines():
     connection = sql.connect(slot_machines_db)
     cursor = connection.cursor()
 
     query = """
-        SELECT 
-            machine_id, name, availability, average_session, 
-            location, location_features, game_theme, game_type, 
+        SELECT
+            machine_id, name, availability, average_session,
+            location, location_features, game_theme, game_type,
             game_features, maximum_bet, minimum_bet, rtp, reward_program,
             top, left
         FROM slot_machines
@@ -374,11 +378,6 @@ def get_slot_machines():
 
     connection.close()
     return jsonify(machines)
-
-@app.route('/slot-map')
-def slot_map():
-    return render_template('slot-map.html')
-
 
 if __name__ == '__main__':
     app.run(debug=True)
