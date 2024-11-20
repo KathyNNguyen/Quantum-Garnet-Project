@@ -3,7 +3,7 @@ import sqlite3
 conn = sqlite3.connect('slot_machines.db')
 cursor = conn.cursor()
 
-with open('UIX/static/js/db.sql', 'r') as f:
+with open('static/js/db.sql', 'r') as f:
     sql = f.read()
 
 try:
