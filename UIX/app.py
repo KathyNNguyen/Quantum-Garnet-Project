@@ -9,6 +9,7 @@ app.secret_key = secrets.token_hex(16)
 # Define the database files.
 user_accounts_db = 'UIX/user_accounts.db'
 promotions_db = 'UIX/promotions.db'
+slot_machines_db = 'UIX/slot_machines.db'
 
 # Route for home page.
 @app.route('/')
@@ -335,7 +336,7 @@ def rewards():
 
 @app.route('/api/slot-machines')
 def get_slot_machines():
-    connection = sqlite3.connect('db.sql')
+    connection = sql.connect(slot_machines_db)
     cursor = connection.cursor()
 
     query = """
