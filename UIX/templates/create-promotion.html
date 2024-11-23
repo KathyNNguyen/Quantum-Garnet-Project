@@ -41,57 +41,46 @@
         </div>
       </div>
       <div class="account-container">
-        <!-- Create Account Form -->
+        <!-- Create Promotion Form -->
         <form
           class="login-form"
           method="POST"
-          action="{{ url_for('create_account') }}"
+          action="{{ url_for('create_promotion') }}"
         >
-          <h2>Create Account</h2>
+          <h2>Create Promotion</h2>
 
           <input
             type="text"
-            id="first_name"
-            name="first_name"
-            placeholder="First Name"
+            id="promotion_name"
+            name="promotion_name"
+            placeholder="Promotion Name"
             required
+            value="{{ request.form.get('promotion_name', '') }}"
           /><br />
+
           <input
-            type="text"
-            id="last_name"
-            name="last_name"
-            placeholder="Last Name"
+            type="number"
+            id="promotion_tier"
+            name="promotion_tier"
+            placeholder="Enter promotion tier (1-3)"
             required
-          /><br />
+            min="1"
+            max="3"
+            value="{{ request.form.get('promotion_tier', '') }}"
+          />
+
           <input
-            type="text"
-            id="username"
-            name="username"
-            placeholder="Username"
+            type="real"
+            id="reward_value"
+            name="reward_value"
+            placeholder="Reward Value"
+            step="0.01"
+            min="0"
             required
+            value="{{ request.form.get('reward_value', '') }}"
           /><br />
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Password"
-            required
-          /><br />
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Email"
-            required
-          /><br />
-          <input
-            type="date"
-            id="date_of_birth"
-            name="date_of_birth"
-            placeholder="Date of Birth"
-            required
-          /><br />
-          <input type="submit" value="Create Account" class="btn-submit" />
+
+          <input type="submit" value="Create Promotion" class="btn-submit" />
         </form>
       </div>
     </div>

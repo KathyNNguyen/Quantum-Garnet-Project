@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Favicon -->
     <link
       rel="icon"
       href="{{ url_for('static', filename='images/seven2.png') }}"
@@ -13,11 +14,20 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='css/styles.css') }}"
     />
+    <!-- Redirect to Admin -->
+    <script>
+      function redirectToAdmin() {
+        window.location.href = "{{ url_for('admin') }}";
+      }
+    </script>
   </head>
 
   <body>
+    <!-- Wrapper for entire page content -->
     <div class="wrapper">
+      <!-- Toolbar with navigation buttons -->
       <div class="toolbar">
+        <!-- Logo -->
         <img
           src="{{ url_for('static', filename='images/logo2.png') }}"
           alt="Quantum Garnet Casino"
@@ -28,6 +38,7 @@
           <a href="{{ url_for('directory') }}" class="toolbar-button"
             >Directory</a
           >
+          <!-- If logged in, login button becomes account button. -->
           {% if session.get('logged_in') %}
           <a href="{{ url_for('account') }}" class="toolbar-button">Account</a>
           {% else %}
@@ -43,10 +54,16 @@
           <p><strong>Last Name:</strong> {{ user[1] }}</p>
           <p><strong>Email:</strong> {{ user[2] }}</p>
           <p><strong>Birthday:</strong> {{ user[3] }}</p>
-          <p><strong>Reward Balance:</strong> ${{ user[4] }}</p>
+          <p><strong>Reward Balance:</strong> ${{ "%.2f"|format(user[4]) }}</p>
           <p><strong>Promotion Tier:</strong> {{ user[5] }}</p>
+
           <input type="submit" value="Log Out" />
         </form>
+
+        {% if session.get('security_level') == 9 %}
+        <!-- Admin Button -->
+        <button onclick="redirectToAdmin()" class="btn-submit">Admin</button>
+        {% endif %}
       </div>
     </div>
   </body>

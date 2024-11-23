@@ -318,7 +318,9 @@ a {
 .login-form input[type="text"],
 .login-form input[type="password"],
 .login-form input[type="email"],
-.login-form input[type="date"] {
+.login-form input[type="date"],
+.login-form input[type="real"],
+.login-form input[type="number"] {
   width: 90%;
   margin-bottom: var(--margin-base);
   padding: var(--padding-small);
@@ -403,6 +405,7 @@ a {
   padding: var(--padding-base);
   font-size: var(--font-size-medium);
   overflow-y: auto;
+  text-align: center;
 }
 
 .flipbook-buttons-row {

@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Favicon -->
     <link
       rel="icon"
       href="{{ url_for('static', filename='images/seven2.png') }}"
@@ -16,8 +17,11 @@
   </head>
 
   <body>
+    <!-- Wrapper for entire page content -->
     <div class="wrapper">
+      <!-- Toolbar with navigation buttons -->
       <div class="toolbar">
+        <!-- Logo -->
         <img
           src="{{ url_for('static', filename='images/logo2.png') }}"
           alt="Quantum Garnet Casino"
@@ -28,6 +32,7 @@
           <a href="{{ url_for('directory') }}" class="toolbar-button"
             >Directory</a
           >
+          <!-- If logged in, login button becomes account button. -->
           {% if session.get('logged_in') %}
           <a href="{{ url_for('account') }}" class="toolbar-button">Account</a>
           {% else %}
@@ -36,31 +41,39 @@
         </div>
       </div>
 
+      <!-- Flipbook for Promotions -->
       <div class="flipbook">
         <div class="flipbook-container">
           <div class="flipbook-wrapper" id="flipbookWrapper">
+            <!-- Loop through and display promotion data -->
             {% if promotion_data %} {% for promo in promotion_data %}
             <div class="flipbook-page">
               <div class="flipbook-grid">
+                <!-- Title of current promotion -->
                 <div class="flipbook-title">
                   <h2>Promotion {{ loop.index }}</h2>
                 </div>
-
+                <!-- Promotion details -->
                 <div class="flipbook-content">
                   <p>
                     <strong>Promotion Name:</strong> {{ promo.promotion_name }}
                   </p>
-                  <p><strong>Reward Value:</strong> {{ promo.reward_value }}</p>
+                  <p>
+                    <strong>Reward Value:</strong> ${{
+                    "%.2f"|format(promo.reward_value) }}
+                  </p>
                   <p>
                     <strong>Promotion Tier:</strong> {{ user_promotion_tier }}
                   </p>
                   <p>
-                    <strong>Reward Balance:</strong> {{ user_reward_balance }}
+                    <strong>Reward Balance:</strong> ${{
+                    "%.2f"|format(user_reward_balance) }}
                   </p>
                 </div>
-
+                <!-- Navigation buttons -->
                 <div class="flipbook-buttons-row">
                   <div class="flipbook-buttons">
+                    <!-- Show previous button if not first page -->
                     {% if not loop.first %}
                     <button
                       class="flipbook-button"
@@ -68,7 +81,9 @@
                     >
                       Previous
                     </button>
-                    {% endif %} {% if not loop.last %}
+                    {% endif %}
+                    <!-- Show next button if not last page -->
+                    {% if not loop.last %}
                     <button
                       class="flipbook-button"
                       id="nextButton{{ loop.index }}"
@@ -80,7 +95,9 @@
                 </div>
               </div>
             </div>
-            {% endfor %} {% else %}
+            {% endfor %}
+            <!-- If no promotions, display message -->
+            {% else %}
             <div class="flipbook-page">
               <div class="flipbook-grid">
                 <div class="flipbook-title">
@@ -103,19 +120,23 @@
       </div>
     </div>
 
+    <!-- JS for flipbook functionality -->
     <script>
       let currentPage = 0;
       const flipbookWrapper = document.getElementById("flipbookWrapper");
       const totalPages = flipbookWrapper.children.length;
 
+      // Event listener for navigation buttons.
       document.querySelectorAll(".flipbook-button").forEach((button) => {
         button.addEventListener("click", function () {
           if (button.id.includes("prev")) {
+            // Navigate to previous page.
             if (currentPage > 0) {
               currentPage--;
               updateFlipbook();
             }
-          } else if (button.id.includes("next")) {
+          } // Navigate to next page.
+          else if (button.id.includes("next")) {
             if (currentPage < totalPages - 1) {
               currentPage++;
               updateFlipbook();
@@ -123,7 +144,7 @@
           }
         });
       });
-
+      // Updates the displayed page in flipbook.
       function updateFlipbook() {
         flipbookWrapper.style.transform = `translateX(-${currentPage * 100}%)`;
       }
