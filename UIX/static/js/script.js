@@ -42,7 +42,7 @@ function addInteractiveStars() {
         })
         .catch(error => console.error('Error fetching slot machines:', error));
 }
-//Search bar / query
+//Search bar querying the data
 const searchMachineTemplate = document.querySelector("[data-machine-template]")
 const searchMachineContainer = document.querySelector("[data-machine-display-container]")
 const searchInput = document.querySelector("[data-search]")
@@ -58,7 +58,7 @@ searchInput.addEventListener("input", (e) => {
     //console.log(machinesS)
 })
 
-fetch("https://jsonplaceholder.typicode.com/users", )//"http://localhost:5000/api/slot_machines",{mode: "no-cors"}
+fetch("/api/slot-machines", )//fetch slot machine data
     .then(res=>res.json())
     .then(data => {
         machinesS = data.map(machine => {
@@ -66,9 +66,10 @@ fetch("https://jsonplaceholder.typicode.com/users", )//"http://localhost:5000/ap
             const header = searchDisplay.querySelector("[machine-header]")
             const body = searchDisplay.querySelector("[machine-body]")
             header.textContent = machine.name
-            body.textContent = machine.id
+            body.textContent = "min: " + machine.minimum_bet + "  max: " + machine.maximum_bet
             searchMachineContainer.append(searchDisplay)
-            return {name: machine.name, id: machine.machine_id, element: searchDisplay}
+            return {name: machine.name, minimum_bet: machine.minimum_bet, maximum_bet: machine.maximum_bet,
+                element: searchDisplay}
             //console.log(machine)
         })
 
