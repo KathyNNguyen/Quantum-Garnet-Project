@@ -9,7 +9,7 @@ app.secret_key = secrets.token_hex(16)
 # Define the database files.
 user_accounts_db = 'UIX/user_accounts.db'
 promotions_db = 'UIX/promotions.db'
-slot_machines_db = 'slot_machines.db'
+slot_machines_db = 'UIX/slot_machines.db'
 
 # Route for home page.
 @app.route('/')
