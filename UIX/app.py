@@ -332,7 +332,57 @@ def promotions():
 # Route for rewards page.
 @app.route('/rewards')
 def rewards():
-    return render_template('rewards.html')
+# Checks if user is logged in.
+    if 'logged_in' in session:
+        username = session['name']
+        try:
+            # Connect to user_account database.
+            with sql.connect(user_accounts_db) as con_user:
+                cur_user = con_user.cursor()
+                cur_user.execute("SELECT reward_balance, promotion_tier FROM user_accounts WHERE username = ?", (username,))
+                user = cur_user.fetchone()
+                
+                # If user is found, get reward_balance and promotion_tier.
+                if user:
+                    user_reward_balance = user[0]
+                    user_promotion_tier = user[1]
+                    
+                    # Map promotion_tier to descriptive names.
+                    tier_names = {1: 'Bronze', 2: 'Gold', 3: 'Diamond'}
+                    user_promotion_tier_name = tier_names.get(user_promotion_tier, 'Unknown')
+
+                    # Connect to promotions database.
+                    with sql.connect(promotions_db) as con_promotions:
+                        cur_promotions = con_promotions.cursor()
+                        cur_promotions.execute("SELECT promotion_name, reward_value FROM promotions WHERE promotion_tier = ?", (user_promotion_tier,))
+                        promotions = cur_promotions.fetchall()
+
+                        # Promotion data based on tier.
+                        if promotions:
+                            promotion_data = [{'promotion_name': name, 'reward_value': value} for name, value in promotions]
+                        else:
+                            flash('No promotions found for this user', 'danger')
+                            return redirect(url_for('home'))
+                    
+                    # Pass tier name to template.
+                    return render_template(
+                        'rewards.html',
+                        user_reward_balance=user_reward_balance,
+                        user_promotion_tier=user_promotion_tier,
+                        user_promotion_tier_name=user_promotion_tier_name,
+                        promotion_data=promotion_data
+                    )
+                else:
+                    flash('No promotions found for this user', 'danger')
+                    return redirect(url_for('home'))
+                
+        except sql.Error as e:
+            flash(f"Database error: {e}", 'danger')
+            return redirect(url_for('home'))
+    else:
+        flash('You must be logged in to view promotions', 'warning')
+        return redirect(url_for('login'))
+
 
 @app.route('/slot-map')
 def slot_map():
