@@ -9,7 +9,7 @@
       href="{{ url_for('static', filename='images/seven2.png') }}"
       type="7-icon"
     />
-    <title>Rewards</title>
+    <title>About</title>
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/styles.css') }}"
@@ -40,6 +40,136 @@
           {% endif %}
         </div>
       </div>
+
+     <!-- Flipbook Content -->
+      <div class="flipbook">
+        <div class="flipbook-container">
+          <div class="flipbook-wrapper" id="flipbookWrapper">
+            <!-- Page 1: Current Tier and Benefits -->
+            <div class="flipbook-page">
+              <div class="flipbook-grid">
+                <div class="flipbook-title">
+                  <h2>Current Tier: {{ user_promotion_tier_name }}</h2>
+                </div>
+                <div class="flipbook-content">
+                  <!-- Current Benefits -->
+                  <h3>Current Benefits:</h3>
+                  {% if user_promotion_tier == 1 %}
+                  <ul>
+                    <li>Special gaming offers at QG casinos</li>
+                    <li>Discounts on hotel and restaurants</li>
+                    <li>Complimentary valet parking</li>
+                  </ul>
+                  <h3>Unlock Gold Benefits:</h3>
+                  <p>Spend $5000/year to reach Gold status and unlock:</p>
+                  <ul>
+                    <li>Up to one week stay at our hotel complimentary to QG</li>
+                    <li>Complimentary premium hotel stay and spa upgrades</li>
+                    <li>$120 free restaurant credit every month ($1200/year)</li>
+                  </ul>
+                  {% elif user_promotion_tier == 2 %}
+                  <ul>
+                    <li>Special gaming offers at QG casinos</li>
+                    <li>Discounts on hotel and restaurants</li>
+                    <li>Complimentary valet parking</li>
+                    <li>Up to one week stay at our hotel complimentary to QG</li>
+                    <li>Complimentary premium hotel stay and spa upgrades</li>
+                    <li>$120 free restaurant credit every month ($1200/year)</li>
+                  </ul>
+                  <h3>Unlock Diamond Benefits:</h3>
+                  <p>Spend $10000/year to reach Diamond status and unlock:</p>
+                  <ul>
+                    <li>Exclusive QG VIP Lounge with complimentary drinks</li>
+                    <li>Two free tickets to shows hosted at QG every month</li>
+                    <li>Up to one week stay at hotel per year complimentary of QG casino</li>
+                  </ul>
+                  {% elif user_promotion_tier == 3 %}
+                  <ul>
+                    <li>Special gaming offers at QG casinos</li>
+                    <li>Discounts on hotel and restaurants</li>
+                    <li>Complimentary valet parking</li>
+                    <li>Up to one week stay at our hotel complimentary to QG</li>
+                    <li>Complimentary premium hotel stay and spa upgrades</li>
+                    <li>$120 free restaurant credit every month ($1200/year)</li>
+                    <li>Exclusive QG VIP Lounge with complimentary drinks</li>
+                    <li>Two free tickets to shows hosted at QG every month</li>
+                    <li>Up to one week stay at hotel per year complimentary of QG casino</li>
+                  </ul>
+                  <h3>Maintain Diamond Benefits:</h3>
+                  <p>Maintain $10000/year to continue enjoying these exclusive perks.</p>
+                  {% endif %}
+                </div>
+                <div class="flipbook-buttons-row">
+                  <div class="flipbook-buttons">
+                    <button class="flipbook-button" id="nextButton1">Next</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Page 2: Thank You Page -->
+            <div class="flipbook-page">
+              <div class="flipbook-grid">
+                <div class="flipbook-title">
+                  <h2>Thank You for Being a Valued Member!</h2>
+                </div>
+                <div class="flipbook-content">
+                  <p>
+                    We appreciate your loyalty to Quantum Garnet Casino. Continue
+                    enjoying your benefits and working toward unlocking higher-tier
+                    perks!
+                  </p>
+                </div>
+                <div class="flipbook-buttons-row">
+                  <div class="flipbook-buttons">
+                    <button class="flipbook-button" id="prevButton2">Previous</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <!-- JavaScript for Flipbook -->
+    <script>
+      let currentPage = 0;
+      const flipbookWrapper = document.getElementById("flipbookWrapper");
+      const totalPages = flipbookWrapper.children.length;
+
+      // Update the flipbook view
+      function updateFlipbook() {
+        flipbookWrapper.style.transform = `translateX(-${currentPage * 100}%)`;
+        updateButtonStates();
+      }
+
+      // Enable or disable navigation buttons
+      function updateButtonStates() {
+        document.querySelectorAll(".flipbook-button").forEach((button) => {
+          if (button.innerText.trim() === "Previous") {
+            button.disabled = currentPage === 0;
+          } else if (button.innerText.trim() === "Next") {
+            button.disabled = currentPage === totalPages - 1;
+          }
+        });
+      }
+
+      // Add event listeners to buttons
+      document.querySelectorAll(".flipbook-button").forEach((button) => {
+        button.addEventListener("click", function () {
+          if (button.innerText.trim() === "Previous" && currentPage > 0) {
+            currentPage--;
+            updateFlipbook();
+          } else if (button.innerText.trim() === "Next" && currentPage < totalPages - 1) {
+            currentPage++;
+            updateFlipbook();
+          }
+        });
+      });
+
+      // Initialize button states
+      updateButtonStates();
+    </script>
   </body>
 </html>
