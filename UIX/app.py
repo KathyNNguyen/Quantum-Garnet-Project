@@ -348,7 +348,7 @@ def rewards():
                     user_promotion_tier = user[1]
                     
                     # Map promotion_tier to descriptive names.
-                    tier_names = {1: 'Bronze', 2: 'Gold', 3: 'Diamond'}
+                    tier_names = {1: 'Bronze', 2: 'Gold', 3: 'Platnium'}
                     user_promotion_tier_name = tier_names.get(user_promotion_tier, 'Unknown')
 
                     # Connect to promotions database.
