@@ -42,13 +42,23 @@
       </div>
       <div class="left-side">
         <div class="searchbar">
+            <!--Search bar -->
           <input
             type="search"
             id="search-box"
             class="search-input"
             placeholder="Search..."
+            data-search
           />
         </div>
+          <!--Search bar results display -->
+          <div class="search-machines" data-machine-display-container></div>
+          <template data-machine-template>
+              <div class="machine">
+                  <div class="header" machine-header></div>
+                  <div class="body" machine-body></div>
+              </div>
+          </template>
       </div>
       <div class="right-side">
         <div class="floorplan-container" id="floorplan-container">

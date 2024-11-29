@@ -42,6 +42,38 @@ function addInteractiveStars() {
         })
         .catch(error => console.error('Error fetching slot machines:', error));
 }
+//Search bar querying the data
+const searchMachineTemplate = document.querySelector("[data-machine-template]")
+const searchMachineContainer = document.querySelector("[data-machine-display-container]")
+const searchInput = document.querySelector("[data-search]")
+
+let machinesS = []
+
+searchInput.addEventListener("input", (e) => {
+    const value = e.target.value.toLowerCase()
+    machinesS.forEach(machine => {
+        const isVisible = machine.name.toLowerCase().includes(value)
+        machine.element.classList.toggle("hide", !isVisible)
+    })
+    //console.log(machinesS)
+})
+
+fetch("/api/slot-machines", )//fetch slot machine data
+    .then(res=>res.json())
+    .then(data => {
+        machinesS = data.map(machine => {
+            const searchDisplay = searchMachineTemplate.content.cloneNode(true).children[0]
+            const header = searchDisplay.querySelector("[machine-header]")
+            const body = searchDisplay.querySelector("[machine-body]")
+            header.textContent = machine.name
+            body.textContent = "min: " + machine.minimum_bet + "  max: " + machine.maximum_bet
+            searchMachineContainer.append(searchDisplay)
+            return {name: machine.name, minimum_bet: machine.minimum_bet, maximum_bet: machine.maximum_bet,
+                element: searchDisplay}
+            //console.log(machine)
+        })
+
+    })
 
 // load stars after the window loads
 window.onload = addInteractiveStars;

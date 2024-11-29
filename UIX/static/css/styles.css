@@ -155,6 +155,26 @@ a {
   border-radius: var(--border-medium);
   font-size: var(--font-size-medium);
 }
+.search-machines {
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(150px, 1fr));
+  gap: .5rem;
+}
+.machine {
+  border: 1px solid black;
+  background-color: white;
+  padding: .5rem;
+}
+.machine > .header {
+  margin-bottom: .25rem;
+}
+.machine > .body{
+  font-size: .8rem;
+  color: #777
+}
+.hide {
+  display: none;
+}
 
 .right-side {
   grid-column: span 3 / span 3;
