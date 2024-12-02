@@ -18,28 +18,71 @@
 
   <body>
     <!-- Wrapper for entire page content -->
-    <div class="wrapper">
-      <!-- Toolbar with navigation buttons -->
-      <div class="toolbar">
-        <!-- Logo -->
-        <img
-          src="{{ url_for('static', filename='images/logo2.png') }}"
-          alt="Quantum Garnet Casino"
-        />
-        <div class="toolbar-buttons">
-          <a href="{{ url_for('home') }}" class="toolbar-button">Home</a>
-          <a href="{{ url_for('about') }}" class="toolbar-button">About</a>
-          <a href="{{ url_for('directory') }}" class="toolbar-button"
-            >Directory</a
-          >
-          <!-- If logged in, login button becomes account button. -->
-          {% if session.get('logged_in') %}
-          <a href="{{ url_for('account') }}" class="toolbar-button">Account</a>
-          {% else %}
-          <a href="{{ url_for('login') }}" class="toolbar-button">Login</a>
-          {% endif %}
-        </div>
+      <div class="wrapper">
+          <!-- Toolbar with navigation buttons -->
+          <div class="toolbar" style="position:fixed;">
+              <!-- Logo -->
+              <img src="{{ url_for('static', filename='images/logo2.png') }}"
+                   alt="Quantum Garnet Casino" />
+              <div class="toolbar-buttons">
+                  <a href="{{ url_for('home') }}" class="toolbar-button">Home</a>
+                  <a href="{{ url_for('about') }}" class="toolbar-button">About</a>
+                  <a href="{{ url_for('directory') }}" class="toolbar-button">Directory</a>
+                  <!-- If logged in, login button becomes account button. -->
+                  {% if session.get('logged_in') %}
+                  <a href="{{ url_for('account') }}" class="toolbar-button">Account</a>
+                  {% else %}
+                  <a href="{{ url_for('login') }}" class="toolbar-button">Login</a>
+                  {% endif %}
+              </div>
+          </div>
+
+          <!-- Winners Scroll Wheel -->
+          <div class="winner-container">
+              <h2 style="text-align: center; margin-bottom: 20px; font-size: 24px; font-weight: bold;">
+                  Weekly Top
+              </h2>
+              <div class="winner-scrollcont" id="scrollable">
+                  {% for machine in machines %}
+                  <!-- This line causes a lot of warnings in console. Things that should not work work. ... Do not touch.-->
+                  <div class="winner-column" style="background-image: url('{{ url_for('static', filename='images/arcade' ~ machine.id ~ '.png') }}'); position: relative;">
+                      <div style="
+                                    position: absolute;
+                                    top: 0;
+                                    left: 0;
+                                    width: 100%;
+                                    background: rgba(0, 0, 0, 0.5);
+                                    color: white;
+                                    text-align: center;
+                                    font-size: 16px;
+                                    padding: 5px;
+                                    box-sizing: border-box;
+                                ">
+                          {{ machine.name }}<br />
+                          Location: {{ machine.location }}
+                      </div>
+                  </div>
+                  {% endfor %}
+              </div>
+          </div>
+
+          <!-- Script for Mouse Event/Scrolling -->
+          <script>
+              const scrollContainer = document.getElementById('scrollable');
+
+              scrollContainer.addEventListener('mousemove', (event) => {
+                  containerWidth = scrollContainer.offsetWidth;
+                  scrollWidth = scrollContainer.scrollWidth;
+
+                  mouseX = event.clientX - scrollContainer.getBoundingClientRect().left;
+                  scrollPosition = (mouseX / containerWidth) * scrollWidth;
+
+                  scrollContainer.scrollTo({
+                      left: scrollPosition,
+                      behavior: 'smooth',
+                  });
+              });
+          </script>
       </div>
-    </div>
   </body>
 </html>

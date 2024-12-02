@@ -2,7 +2,7 @@ import pandas as pd
 import sqlite3
 
 # Constants
-dbName = 'slot_machines.db'
+dbName = 'UIX/slot_machines.db'
 
 # Modifiable lists, higher values = higher priority in sorting for revenue maximization
 location_features_val = {
@@ -19,7 +19,7 @@ location_features_val = {
 game_features_val = {
     'progressive_jackpot': 5,
     'high_roller_spins': 5,
-    'vip_bonuses': 5,  # Attached to loyalty program
+    'vip_bonuses': 5,
     'jackpot_wheel': 4,
     'megaways': 4,
     'bonus_rounds': 4,
@@ -40,7 +40,7 @@ game_features_val = {
     'random_wilds': 2,
     'pick_and_click': 2,
     'adjacent_pays': 2,
-    're_spins': 2,  # Respin feature
+    're_spins': 2,
     'gamble_feature': 1,
     'mystery_symbols': 1,
     'themed_bonus_rounds': 1,
@@ -73,13 +73,8 @@ game_theme_val = {
     'Fruit': 1
 }
 
-
-# machine_id, availability, average_session, location, location_features, game_theme,
-# game_type, game_features, maximum_bet, minimum_bet, rtp, reward_program
-
 # Filter machines based on availability
-# Stretch goal: I would eventually like to code this so it also factors in the machines
-# in use nearby as that is also a revenue driver
+
 def filterActive(slot_machines):
     return [machine for machine in slot_machines if machine['availability'] == True]
 
@@ -163,7 +158,7 @@ if __name__ == "__main__":
 
     # Splice list to specified amount
     recommended_machines = recommended_machines[:10]
-
-    with open("recommendations.txt", "w") as f:
+    
+    with open("UIX/static/weeklyreco/recommendations.txt", "w") as f:
         for machine in recommended_machines:
             print(f"{machine['machine_id']}, {machine['name']}, {machine['location']}", file=f)
