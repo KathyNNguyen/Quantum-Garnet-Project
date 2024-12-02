@@ -64,7 +64,7 @@ INSERT INTO slot_machines (machine_id, name, availability, average_session, loca
 (47, 'Pirate\s Cove', 0, 34.15, 'Star48', '["restaurant", "table_service", "central"]', 'Pirate', '3D Slots', '["gamble_feature", "re_spins", "scatter_symbols", "progressive_jackpot"]', 292.71, 4.82, 87.76, 0),
 (48, 'Royal Jewels', 0, 85.39, 'Star43', '["entrance", "bar"]', 'Egyptian', 'Bonus Slots', '["colossal_symbols", "sticky_wilds", "high_roller_spins"]', 271.13, 0.89, 85.20, 1),
 (49, 'Savannah Safari', 1, 38.29, 'Star38', '["walkway_adjacent"]', 'Jungle', 'Classic Slots', '["sticky_wilds", "adjacent_pays"]', 329.57, 1.39, 88.00, 1),
-(50, 'Cleopatra\s Gold', 0, 114.93, 'Star42', '["decoration", "central", "bathroom"]', 'Egyptian', '3D Slots', '["wild_symbols"]', 444.58, 1.79, 87.94, 1);
+(50, 'Cleopatra\s Gold', 0, 114.93, 'Star42', '["decoration", "central", "bathroom"]', 'Egyptian', '3D Slots', '["wild_symbols"]', 444.58, 1.79, 87.94, 1),
 (51, 'Atlantis Adventure', 0, 120.45, 'Star51', '["bathroom", "central"]', 'Ocean', 'Progressive Slots', '["high_roller_spins", "bonus_rounds"]', 312.23, 2.34, 92.50, 1),
 (52, 'Jungle Madness', 1, 75.12, 'Star52', '["entrance", "decoration"]', 'Jungle', 'Megaways', '["walking_wilds", "vip_bonuses"]', 220.41, 3.15, 90.87, 0),
 (53, 'Stellar Spins', 1, 88.96, 'Star53', '["table_service", "bar"]', 'Sci-Fi', 'Bonus Slots', '["cascading_reels", "adjacent_pays", "stacked_wilds"]', 187.33, 2.72, 94.13, 1),
@@ -115,4 +115,4 @@ INSERT INTO slot_machines (machine_id, name, availability, average_session, loca
 (98, 'Pharaoh\s Legacy', 0, 104.67, 'Star98', '["walkway_adjacent", "entrance"]', 'Egyptian', 'Themed Slots', '["bonus_rounds", "walking_wilds"]', 256.44, 2.34, 91.50, 0),
 (99, 'Royal Voyage', 1, 96.78, 'Star99', '["restaurant", "bar"]', 'Pirate', 'Video Slots', '["vip_bonuses", "progressive_jackpot"]', 330.90, 3.89, 93.77, 1),
 (100, 'Western Legacy', 1, 87.33, 'Star100', '["decoration", "walkway_adjacent"]', 'Wild West', '3D Slots', '["re_spins", "scatter_symbols"]', 250.45, 2.23, 89.67, 1),
-(101, 'Mystic Realms', 0, 79.45, 'Star101', '["bar", "entrance"]', 'Fantasy', 'Bonus Slots', '["adjacent_pays", "seasonal_features"]', 377.56, 2.10, 93.25, 0),   
+(101, 'Mystic Realms', 0, 79.45, 'Star101', '["bar", "entrance"]', 'Fantasy', 'Bonus Slots', '["adjacent_pays", "seasonal_features"]', 377.56, 2.10, 93.25, 0); 
