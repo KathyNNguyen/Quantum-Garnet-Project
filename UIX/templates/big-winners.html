@@ -45,10 +45,11 @@
       <div class="winner-container">
         <h2 class="winner-title">Weekly Top</h2>
         <div class="winner-scrollcont" id="scrollable">
-          {% for machine in machines %}
+          {% for machine in machines %} {% set image_url = url_for('static',
+          filename='images/arcade' + (machine.id|string) + '.png') %}
           <div
             class="winner-column"
-            style="background-image: url('{{ url_for('static', filename='images/arcade' + machine.id + '.png') }}');"
+            style="background-image: url('{{ image_url }}')"
           >
             <div class="machine-info">
               {{ machine.name }}<br />
