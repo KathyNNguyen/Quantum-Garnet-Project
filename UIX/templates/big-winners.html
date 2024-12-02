@@ -20,7 +20,7 @@
     <!-- Wrapper for entire page content -->
     <div class="wrapper">
       <!-- Toolbar with navigation buttons -->
-      <div class="toolbar">
+      <div class="toolbar" style="position: fixed">
         <!-- Logo -->
         <img
           src="{{ url_for('static', filename='images/logo2.png') }}"
@@ -40,6 +40,43 @@
           {% endif %}
         </div>
       </div>
+
+      <!-- Winners Scroll Wheel -->
+      <div class="winner-container">
+        <h2 class="winner-title">Weekly Top</h2>
+        <div class="winner-scrollcont" id="scrollable">
+          {% for machine in machines %} {% set image_url = url_for('static',
+          filename='images/arcade' + (machine.id|string) + '.PNG') %}
+          <div
+            class="winner-column"
+            style="background-image: url('{{ image_url }}'); background-size: cover; background-position: center;"
+          >
+            <div class="machine-info">
+              {{ machine.name }}<br />
+              Location: {{ machine.location }}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Script for Mouse Event/Scrolling -->
+      <script>
+        const scrollContainer = document.getElementById("scrollable");
+
+        scrollContainer.addEventListener("mousemove", (event) => {
+          containerWidth = scrollContainer.offsetWidth;
+          scrollWidth = scrollContainer.scrollWidth;
+
+          mouseX = event.clientX - scrollContainer.getBoundingClientRect().left;
+          scrollPosition = (mouseX / containerWidth) * scrollWidth;
+
+          scrollContainer.scrollTo({
+            left: scrollPosition,
+            behavior: "smooth",
+          });
+        });
+      </script>
     </div>
   </body>
 </html>

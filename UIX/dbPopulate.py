@@ -117,6 +117,9 @@ coordinates = [
     # (110, 100, 200)
 ]
 
+# with open('UIX/static/js/db.sql', 'r') as f:
+#     sql = f.read()
+
 try:
     # Connect to the SQLite database
     connection = sqlite3.connect(db_path)

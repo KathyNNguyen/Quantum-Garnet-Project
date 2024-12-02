@@ -77,7 +77,21 @@ def admin():
 # Route for big-winners page.
 @app.route('/big-winners')
 def big_winners():
-    return render_template('big-winners.html')
+    machines = [];
+    
+    # Assumes the recommendations.txt is in the generated format
+    with open("UIX/static/weeklyreco/recommendations.txt", "r") as file:
+        for line in file:
+            parts = line.strip().split(", ")
+            if len(parts) == 3:
+                location = parts[2].replace("Star", "Star ")
+                machines.append({
+                    "id": parts[0],
+                    "name": parts[1],
+                    "location": location
+                    })
+    
+    return render_template('big-winners.html', machines=machines)
 
 # Route for create-account page.
 @app.route('/create-account', methods=['GET', 'POST'])
