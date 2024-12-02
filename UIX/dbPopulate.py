@@ -54,22 +54,22 @@ coordinates = [
     (47, 65.75, 2.6),
     (48, 47.78, 11.54),
     (49, 60.27, 11.54),
-    (50, 51.72, 9.65)
-    # (51, 55.89, 9.65),
-    # (52, 51.72, 13.42),
-    # (53, 55.89, 13.42),
-    # (54, 44.27, 21.48),
-    # (55, 48.44, 21.48),
-    # (56, 52.60, 21.48),
-    # (57, 56.98, 21.48),
-    # (58, 61.37, 21.48),
-    # (59, 100, 200),
-    # (60, 100, 200),
-    # (61, 100, 200),
-    # (62, 100, 200),
-    # (63, 100, 200),
-    # (64, 100, 200),
-    # (65, 100, 200),
+    (50, 51.72, 9.65),
+    (51, 55.89, 9.65),
+    (52, 51.72, 13.42),
+    (53, 55.89, 13.42),
+    (54, 44.27, 21.48),
+    (55, 48.44, 21.48),
+    (56, 52.60, 21.48),
+    (57, 56.98, 21.48),
+    (58, 61.37, 21.48),
+    (59, 100, 200),
+    (60, 100, 200),
+    (61, 100, 200),
+    (62, 100, 200),
+    (63, 100, 200),
+    (64, 100, 200),
+    (65, 100, 200)
     # (66, 100, 200),
     # (67, 100, 200),
     # (68, 100, 200),
@@ -117,13 +117,20 @@ coordinates = [
     # (110, 100, 200)
 ]
 
-# with open('UIX/static/js/db.sql', 'r') as f:
-#     sql = f.read()
+with open('UIX/static/js/db.sql', 'r') as f:
+    sql = f.read()
 
 try:
     # Connect to the SQLite database
     connection = sqlite3.connect(db_path)
     cursor = connection.cursor()
+
+    for machine_id, top, left in coordinates:
+        cursor.execute("""
+            UPDATE slot_machines
+            SET top = ?, left = ?
+            WHERE machine_id = ?;
+        """, (top, left, machine_id))
 
     # Update coordinates for each machine
     for machine_id, top, left in coordinates:
