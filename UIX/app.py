@@ -404,8 +404,8 @@ def slot_map():
 
 @app.route('/api/slot-machines')
 def get_slot_machines():
-    connection = sql.connect(slot_machines_db)
-    cursor = connection.cursor()
+    conn = sql.connect(slot_machines_db)
+    cursor = conn.cursor()
 
     query = """
         SELECT
@@ -440,7 +440,7 @@ def get_slot_machines():
         for row in rows
     ]
 
-    connection.close()
+    conn.close()
     return jsonify(machines)
 
 if __name__ == '__main__':
