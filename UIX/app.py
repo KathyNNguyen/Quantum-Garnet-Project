@@ -255,7 +255,34 @@ def create_promotion():
 # Route for directory page.
 @app.route('/directory')
 def directory():
-    return render_template('directory.html')
+    try:
+        # Connect to slot machines database.
+        with sql.connect(slot_machines_db) as conn:
+            conn.row_factory = sql.Row
+            cursor = conn.cursor()
+            
+            # Fetch machines.
+            cursor.execute('''
+                SELECT 
+                    name, 
+                    location, 
+                    game_theme, 
+                    game_type, 
+                    minimum_bet, 
+                    maximum_bet 
+                FROM slot_machines
+            ''')
+            
+            # Fetch all rows.
+            machines = cursor.fetchall()
+            
+            # Render the directory template with machines data.
+            return render_template('directory.html', machines=machines)
+    
+    except sql.Error as e:
+        # Handle any database errors.
+        flash(f"Database error: {e}", 'danger')
+        return redirect(url_for('home'))
 
 # Route for login page.
 @app.route('/login', methods=['GET', 'POST'])
