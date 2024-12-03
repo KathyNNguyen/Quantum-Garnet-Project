@@ -3,6 +3,7 @@ import os
 
 db_path = os.path.abspath("UIX/slot_machines.db")
 
+# adding extra slot machines for the map
 updated_slot_machines = [
 (51, 'Atlantis Adventure', 0, 120.45, 'Star51', '["bathroom", "central"]', 'Ocean', 'Progressive Slots', '["high_roller_spins", "bonus_rounds"]', 312.23, 2.34, 92.50, 1),
 (52, 'Jungle Madness', 1, 75.12, 'Star52', '["entrance", "decoration"]', 'Jungle', 'Megaways', '["walking_wilds", "vip_bonuses"]', 220.41, 3.15, 90.87, 0),
@@ -107,10 +108,11 @@ with open('UIX/static/js/db.sql', 'r') as f:
     sql = f.read()
 
 try:
-    # Connect to the SQLite database
+    # connect to the database
     connection = sqlite3.connect(db_path)
     cursor = connection.cursor()
 
+    # adding or updating rows of slot machine data
     sqlite_new_query = """INSERT OR REPLACE INTO slot_machines (
         machine_id, name, availability, average_session, location, location_features,
         game_theme, game_type, game_features, maximum_bet, minimum_bet, rtp, reward_program
@@ -118,7 +120,7 @@ try:
 
     cursor.executemany(sqlite_new_query, updated_slot_machines)
 
-    # Update coordinates for each machine
+    # update coordinates for each machine
     for machine_id, top, left in coordinates:
         cursor.execute("""
             UPDATE slot_machines
@@ -126,17 +128,17 @@ try:
             WHERE machine_id = ?;
         """, (top, left, machine_id))
 
-    # Commit the changes
+    # commit the changes
     connection.commit()
     print("Coordinates updated successfully.")
 
-    # Verify updates (optional)
+    # verify updates
     cursor.execute("SELECT machine_id, name, top, left FROM slot_machines;")
     rows = cursor.fetchall()
     for row in rows:
         print(row)
 
-    # Close the connection
+    # close the connection
     connection.close()
 
 except sqlite3.Error as e:
