@@ -65,11 +65,15 @@
         const scrollContainer = document.getElementById("scrollable");
 
         scrollContainer.addEventListener("mousemove", (event) => {
-          containerWidth = scrollContainer.offsetWidth;
-          scrollWidth = scrollContainer.scrollWidth;
+          const containerWidth = scrollContainer.offsetWidth;
+          const scrollWidth = scrollContainer.scrollWidth;
 
-          mouseX = event.clientX - scrollContainer.getBoundingClientRect().left;
-          scrollPosition = (mouseX / containerWidth) * scrollWidth;
+          const mouseX =
+            event.clientX - scrollContainer.getBoundingClientRect().left;
+
+          const scrollSpeed = 0.4; // Adjust to control scroll speed (lower = slower)
+          const scrollPosition =
+            (mouseX / containerWidth) * scrollWidth * scrollSpeed;
 
           scrollContainer.scrollTo({
             left: scrollPosition,

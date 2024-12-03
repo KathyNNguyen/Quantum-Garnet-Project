@@ -9,7 +9,7 @@
       href="{{ url_for('static', filename='images/seven2.png') }}"
       type="7-icon"
     />
-    <title>Directory</title>
+    <title>Slot Machine Directory</title>
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/styles.css') }}"
@@ -38,6 +38,33 @@
           {% else %}
           <a href="{{ url_for('login') }}" class="toolbar-button">Login</a>
           {% endif %}
+        </div>
+      </div>
+
+      <!-- Slot Machine Directory -->
+      <div class="directory-container">
+        <h1>Slot Machine Directory</h1>
+        <div class="machine-grid">
+          {% for machine in machines %}
+          <div class="machine-card">
+            <h3>{{ machine.name }}</h3>
+            <div class="machine-details">
+              <strong>Location:</strong>
+              <span>{{ machine.location }}</span>
+
+              <strong>Theme:</strong>
+              <span>{{ machine.game_theme }}</span>
+
+              <strong>Game Type:</strong>
+              <span>{{ machine.game_type }}</span>
+
+              <strong>Bet Range:</strong>
+              <span
+                >${{ machine.minimum_bet }} - ${{ machine.maximum_bet }}</span
+              >
+            </div>
+          </div>
+          {% endfor %}
         </div>
       </div>
     </div>
