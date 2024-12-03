@@ -138,9 +138,24 @@ a {
   grid-row-start: 2;
 
   height: 94%;
+  overflow-y: auto;
   margin-left: var(--margin-large);
   padding: var(--padding-base);
   background-color: var(--outer-container-white);
+}
+
+.left-side::-webkit-scrollbar {
+  width: 10px;
+}
+
+.left-side::-webkit-scrollbar-track {
+  background: var(--white);
+  border-radius: 10px;
+}
+
+.left-side::-webkit-scrollbar-thumb {
+  background: var(--submit-red);
+  border-radius: 10px;
 }
 
 .searchbar {
